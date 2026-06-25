@@ -28,7 +28,6 @@
     $all("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
     var featured = INVENTORY.filter(function (v) { return v.featured; })[0] || INVENTORY[0];
-    renderHero(featured);
     renderPanel(featured);
     buildCarousel();
     initNav();
@@ -38,23 +37,14 @@
     initForm();
   });
 
-  /* ---------- hero subheadline (pulled from featured vehicle) ---------- */
-  function renderHero(v) {
-    var sub = $("[data-hero-sub]");
-    if (sub) {
-      sub.innerHTML = "Now featured — <strong>" + v.year + " " + v.make + " " + v.model +
-        "</strong> from " + usd(v.price) + ".";
-    }
-  }
-
   /* ---------- floating featured panel ---------- */
   function renderPanel(v) {
     var p = $("[data-panel]");
     if (!p) return;
+    var img = $("[data-panel-img]", p);
+    if (img) { img.src = v.image; img.alt = v.year + " " + v.make + " " + v.model; }
     $("[data-panel-badge]", p).textContent = v.body;
     $("[data-panel-name]", p).textContent = v.year + " " + v.make + " " + v.model;
-    $("[data-panel-mileage]", p).innerHTML = "<b>" + mi(v.mileage) + "</b>";
-    $("[data-panel-drive]", p).innerHTML = "<b>" + v.drivetrain + "</b>";
     $("[data-panel-price]", p).textContent = usd(v.price);
   }
 
@@ -205,6 +195,29 @@
 
   /* ---------- staggered scroll reveal ---------- */
   function initReveal() {
+    // Section heads: titles + eyebrows slide in from the left (stepped); supporting text rises from below.
+    function decorateHead(container) {
+      var i = 0;
+      Array.prototype.forEach.call(container.children, function (child) {
+        if (child.hasAttribute("data-reveal-group")) return; // leave staggered groups alone
+        var title = child.matches(".eyebrow, h1, h2, h3, .section-title, .reviews__label");
+        child.setAttribute("data-reveal", title ? "left" : "");
+        child.style.setProperty("--d", (i * 0.14).toFixed(2) + "s");
+        i++;
+      });
+    }
+    $all(".nation__copy, .trade__copy, .about__copy, .inspected__copy, .fin__text, .reviews__head").forEach(function (w) {
+      w.removeAttribute("data-reveal");
+      decorateHead(w);
+    });
+    $all(".section-head > div:first-child").forEach(decorateHead);
+    var finInner = $(".fin__inner");
+    if (finInner) {
+      finInner.removeAttribute("data-reveal");
+      var finBtn = $(".fin__inner > .btn");
+      if (finBtn) { finBtn.setAttribute("data-reveal", ""); finBtn.style.setProperty("--d", ".3s"); }
+    }
+
     $all("[data-reveal-group]").forEach(function (g) {
       Array.prototype.slice.call(g.children).forEach(function (c, i) {
         c.style.setProperty("--d", (i * 0.08).toFixed(2) + "s");
@@ -221,8 +234,6 @@
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     items.forEach(function (el) { io.observe(el); });
-    // safety net so nothing stays hidden if a callback is missed
-    setTimeout(function () { items.forEach(function (el) { el.classList.add("is-in"); }); }, 2600);
   }
 
   /* ---------- count-up stats ---------- */
@@ -263,9 +274,13 @@
       var y = window.scrollY;
       if (bg && y < window.innerHeight) bg.style.transform = "translateY(" + (y * 0.18) + "px)";
       items.forEach(function (it) {
+        var f = parseFloat(it.getAttribute("data-parallax")) || 0.04;
         var r = it.getBoundingClientRect();
         var off = (r.top + r.height / 2) - window.innerHeight / 2;
-        it.style.transform = "translateY(" + (off * -0.04) + "px)";
+        var ty = off * -f;
+        var max = r.height * 0.22;            // stay within the bg overflow, no edge reveal
+        if (ty > max) ty = max; else if (ty < -max) ty = -max;
+        it.style.transform = "translateY(" + ty + "px)";
       });
       ticking = false;
     }
