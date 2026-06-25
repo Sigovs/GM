@@ -29,6 +29,7 @@
 
     var featured = INVENTORY.filter(function (v) { return v.featured; })[0] || INVENTORY[0];
     renderPanel(featured);
+    initHeroSlider();
     buildCarousel();
     initNav();
     initReveal();
@@ -36,6 +37,60 @@
     initParallax();
     initForm();
   });
+
+  /* ---------- hero background slider ---------- */
+  /* Image slides auto-advance after a fixed delay; the video slide plays to the
+     end first, then advances. Dots give manual control. */
+  function initHeroSlider() {
+    var slides = $all(".hero__slide");
+    if (slides.length < 2) return;
+    var dotsWrap = $("[data-hero-dots]");
+    var IMG_MS = 6000;
+    var i = 0, timer = null;
+
+    function clearTimer() { if (timer) { window.clearTimeout(timer); timer = null; } }
+
+    function schedule() {
+      clearTimer();
+      if (prefersReduced) return;
+      var vid = slides[i].querySelector("video");
+      if (vid) {
+        try { vid.currentTime = 0; var p = vid.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+        // fallback in case 'ended' never fires (e.g., load issue)
+        var dur = (vid.duration && isFinite(vid.duration)) ? vid.duration * 1000 + 1500 : 16000;
+        timer = window.setTimeout(function () { go(i + 1); }, dur);
+      } else {
+        timer = window.setTimeout(function () { go(i + 1); }, IMG_MS);
+      }
+    }
+
+    function go(n) {
+      var prev = slides[i];
+      prev.classList.remove("is-active");
+      var pv = prev.querySelector("video"); if (pv) pv.pause();
+      i = (n + slides.length) % slides.length;
+      slides[i].classList.add("is-active");
+      if (dotsWrap) $all("button", dotsWrap).forEach(function (d, k) { d.classList.toggle("is-active", k === i); });
+      schedule();
+    }
+
+    slides.forEach(function (slide) {
+      var v = slide.querySelector("video");
+      if (v) v.addEventListener("ended", function () { if (slide.classList.contains("is-active")) go(i + 1); });
+    });
+
+    if (dotsWrap) {
+      slides.forEach(function (_, k) {
+        var b = document.createElement("button");
+        b.className = "hero__dot" + (k === 0 ? " is-active" : "");
+        b.type = "button";
+        b.setAttribute("aria-label", "Show hero slide " + (k + 1));
+        b.addEventListener("click", function () { go(k); });
+        dotsWrap.appendChild(b);
+      });
+    }
+    schedule();
+  }
 
   /* ---------- floating featured panel ---------- */
   function renderPanel(v) {

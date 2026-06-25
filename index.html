@@ -70,7 +70,9 @@
   <!-- ============================ HERO ============================ -->
   <section class="hero">
     <div class="hero__bg">
-      <img src="assets/img/hero/GM_hero1.jpg" alt="White Mercedes-Benz Sprinter on a desert highway at sunset" />
+      <div class="hero__slide is-active"><video src="assets/img/hero/hero1.mp4" autoplay muted playsinline preload="auto" poster="assets/img/hero/GM_hero1.jpg"></video></div>
+      <div class="hero__slide"><img src="assets/img/hero/GM_hero1.jpg" alt="White Mercedes-Benz Sprinter on a desert highway at sunset" /></div>
+      <div class="hero__slide"><img src="assets/img/hero/hero2.jpg" alt="White Mercedes-Benz Sprinter on a coastal cliff road at dusk" /></div>
     </div>
     <div class="hero__overlay"></div>
 
@@ -110,6 +112,7 @@
     </div>
 
     <div class="hero__scroll" aria-hidden="true"><span class="line"></span> Scroll</div>
+    <div class="hero__dots" data-hero-dots aria-label="Hero slide controls"></div>
   </section>
 
   <!-- ============================ WE DELIVER NATIONWIDE (dedicated section) ============================ -->
@@ -218,6 +221,38 @@
     </div>
   </section>
 
+  <!-- ============================ HOW IT WORKS ============================ -->
+  <section class="section steps" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">How It Works</p>
+          <h2 class="section-title">From click to driveway, in three steps.</h2>
+        </div>
+      </div>
+      <div class="steps__grid" data-reveal-group>
+        <div class="step">
+          <span class="step__num">01</span>
+          <div class="step__ic"><i class="bi bi-search"></i></div>
+          <h3>Pick your van online</h3>
+          <p>Browse inspected inventory and reserve from anywhere — no lot visit required.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">02</span>
+          <div class="step__ic"><i class="bi bi-tools"></i></div>
+          <h3>We inspect &amp; prep</h3>
+          <p>Multi-point inspection, service, and detail — with financing and your trade locked in.</p>
+        </div>
+        <div class="step">
+          <span class="step__num">03</span>
+          <div class="step__ic"><i class="bi bi-truck"></i></div>
+          <h3>Door-to-door delivery</h3>
+          <p>Insured transport straight to your driveway, anywhere in the 50 states.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================ PHOTO BREAKER — on the road ============================ -->
   <section class="breaker" aria-label="Built for the road">
     <div class="breaker__bg" data-parallax="0.22"><img src="assets/img/vans/break-road.jpg" alt="White Mercedes-Benz Sprinter on a coastal highway at dusk" loading="lazy" /></div>
@@ -302,7 +337,12 @@
         <div class="fin__text">
           <p class="eyebrow">Financing</p>
           <h2>Pre-qualify in minutes — without affecting your credit.</h2>
-          <p>Flexible options for qualified buyers.</p>
+          <p>Flexible options for qualified buyers — business or personal.</p>
+          <ul class="fin__points">
+            <li><i class="bi bi-shield-check"></i> Soft check — no hit to your credit score</li>
+            <li><i class="bi bi-people"></i> All credit types · business &amp; personal</li>
+            <li><i class="bi bi-lightning-charge"></i> Real numbers in minutes, 100% online</li>
+          </ul>
         </div>
         <a href="#" class="btn btn--accent btn--lg">Apply for Financing <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
       </div>
