@@ -99,7 +99,7 @@
     var cards = $all(".v-card", track);
     var index = 0, perView = 3, maxIndex = 0;
 
-    function perFor() { var w = window.innerWidth; return w <= 640 ? 1 : (w <= 980 ? 2 : 3); }
+    function perFor() { var w = window.innerWidth; return w <= 640 ? 1 : (w <= 980 ? 2 : (w >= 1600 ? 4 : 3)); }
     function step() {
       var gap = parseFloat(getComputedStyle(track).gap) || 0;
       return cards[0].getBoundingClientRect().width + gap;
@@ -133,19 +133,43 @@
     if (prev) prev.addEventListener("click", function () { index = Math.max(0, index - 1); render(); });
     if (next) next.addEventListener("click", function () { index = Math.min(maxIndex, index + 1); render(); });
 
-    // pointer swipe
-    var startX = null;
-    viewport.addEventListener("pointerdown", function (e) { startX = e.clientX; });
-    window.addEventListener("pointerup", function (e) {
-      if (startX === null) return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) > 50) {
-        if (dx < 0) index = Math.min(maxIndex, index + 1);
-        else index = Math.max(0, index - 1);
-        render();
-      }
-      startX = null;
+    // click-and-drag / touch-drag to scrub the carousel
+    var dragging = false, startX = 0, startTx = 0, curTx = 0, moved = false;
+    function clampTx(tx) {
+      var min = -maxIndex * step(), max = 0;
+      if (tx > max) return max + (tx - max) * 0.35;   // edge resistance
+      if (tx < min) return min + (tx - min) * 0.35;
+      return tx;
+    }
+    viewport.addEventListener("pointerdown", function (e) {
+      if (e.button != null && e.button !== 0) return;
+      dragging = true; moved = false;
+      startX = e.clientX; startTx = -index * step(); curTx = startTx;
+      track.style.transition = "none";
+      viewport.classList.add("is-dragging");
+      try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
     });
+    viewport.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      curTx = clampTx(startTx + dx);
+      track.style.transform = "translateX(" + curTx + "px)";
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      track.style.transition = "";
+      viewport.classList.remove("is-dragging");
+      index = Math.max(0, Math.min(maxIndex, Math.round(-curTx / step())));
+      render();
+    }
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    // a drag must not also fire a card link click
+    viewport.addEventListener("click", function (e) {
+      if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+    }, true);
 
     var rt;
     window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
