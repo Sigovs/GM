@@ -3,190 +3,217 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GM Motors NY — Premium Pre-Owned & High-Line Vehicles</title>
-  <meta name="description" content="GM Motors NY — premium pre-owned and high-line vehicles. Browse inventory, value your trade, and finance. We deliver nationwide." />
+  <title>GM Motors — Pre-Owned Mercedes-Benz Sprinter & Cargo Vans, Delivered Nationwide</title>
+  <meta name="description" content="GM Motors — quality pre-owned Mercedes-Benz Sprinter, Ford Transit, and Ram ProMaster vans for work, business, and luxury conversions. Financing, Edmunds trade-in, and door-to-door delivery to all 50 states from Baldwin, NY." />
 
-  <!-- Fonts -->
+  <!-- branded favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2319846F'/%3E%3Ctext x='32' y='43' font-family='Sora,Arial,sans-serif' font-size='27' font-weight='800' letter-spacing='-1.5' fill='%23ffffff' text-anchor='middle'%3EGM%3C/text%3E%3C/svg%3E" />
+
+  <!-- social / open graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GM Motors — Pre-Owned Sprinter & Cargo Vans, Delivered Nationwide" />
+  <meta property="og:description" content="Quality pre-owned Mercedes-Benz Sprinter, Ford Transit, and Ram ProMaster vans. Financing, trade-in, and door-to-door delivery to all 50 states." />
+  <meta property="og:image" content="assets/img/vans/hero-sprinter.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- avoid flash of hidden content if JS fails to run -->
+  <script>document.documentElement.className += " js";</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Bootstrap 5.3.8 + Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
-
-  <!-- Theme -->
-  <link href="css/theme.css" rel="stylesheet" />
+  <link href="css/home.css" rel="stylesheet" />
 </head>
-<body>
+<body id="top">
 
-  <!-- ============================ HEADER ============================ -->
-  <header class="border-bottom bg-white sticky-top">
-    <!-- top utility strip -->
-    <div class="bg-dark text-white-50 small">
-      <div class="container d-flex justify-content-between align-items-center py-1">
-        <span><i class="bi bi-truck me-1"></i> We deliver <strong class="text-white">nationwide</strong></span>
-        <a class="link-light text-decoration-none" href="tel:+15550000000" data-placeholder="phone">
-          <i class="bi bi-telephone me-1"></i> (555) 000-0000
+  <!-- ============================ NAVBAR ============================ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="brand" href="index.html" aria-label="GM Motors NY — home">
+          <span class="brand__mark" aria-hidden="true">GM</span>
+          <span class="brand__word">Motors<span class="brand__ny">NY</span></span>
         </a>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a class="nav__link" href="inventory.html">Inventory</a>
+          <a class="nav__link" href="#trade">Trade / Sell</a>
+          <a class="nav__link" href="#about">About</a>
+          <a class="nav__link" href="#reviews">Reviews</a>
+        </nav>
+
+        <div class="nav__actions">
+          <a href="#financing" class="btn btn--ghost-light">Financing</a>
+          <a href="inventory.html" class="btn btn--accent">Browse Inventory</a>
+        </div>
+
+        <button class="nav__toggle" type="button" data-nav-toggle aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile drawer -->
+  <div class="drawer" id="drawer">
+    <a class="drawer__link" href="inventory.html">Inventory</a>
+    <a class="drawer__link" href="#trade">Trade / Sell</a>
+    <a class="drawer__link" href="#about">About</a>
+    <a class="drawer__link" href="#reviews">Reviews</a>
+    <div class="drawer__actions">
+      <a href="#financing" class="btn btn--outline btn--block btn--lg">Financing</a>
+      <a href="inventory.html" class="btn btn--accent btn--block btn--lg">Browse Inventory</a>
+    </div>
+  </div>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="assets/img/vans/hero-sprinter.jpg" alt="White Mercedes-Benz Sprinter high-roof van on an open highway at golden hour" />
+    </div>
+    <div class="hero__overlay"></div>
+
+    <div class="hero__marker" aria-hidden="true">
+      <span class="num">01</span><span>Featured</span>
+    </div>
+
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__intro">
+          <span class="hero__pill"><i class="bi bi-truck"></i> We deliver nationwide — all 50 states</span>
+          <p class="eyebrow hero__eyebrow">Featured Inventory</p>
+          <h1 class="hero__title">The right van, delivered to your door.</h1>
+          <p class="hero__sub" data-hero-sub>Quality pre-owned Sprinter, Transit &amp; ProMaster vans — financed and delivered nationwide.</p>
+          <div class="hero__ctas">
+            <a href="inventory.html" class="btn btn--accent btn--lg">View Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+            <a href="#trade" class="btn btn--ghost-light btn--lg">Value Your Trade</a>
+          </div>
+        </div>
+
+        <!-- floating featured vehicle panel (populated from inventory data) -->
+        <aside class="feat-panel" data-panel aria-label="Featured vehicle">
+          <div class="feat-panel__top">
+            <span class="feat-panel__tag">Featured vehicle</span>
+            <span class="feat-panel__badge" data-panel-badge>High Roof Cargo</span>
+          </div>
+          <h2 class="feat-panel__name" data-panel-name>2024 Mercedes-Benz Sprinter 3500XD</h2>
+          <div class="feat-panel__meta">
+            <span>Mileage <span data-panel-mileage><b>12,980 mi</b></span></span>
+            <span>Drive <span data-panel-drive><b>RWD</b></span></span>
+          </div>
+          <div class="feat-panel__row">
+            <span class="feat-panel__price" data-panel-price>$62,900</span>
+            <a href="vehicle.html" class="feat-panel__link">View details <i class="bi bi-arrow-right arrow"></i></a>
+          </div>
+        </aside>
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand fw-bold fs-4 letter-tight" href="index.html">
-          GM&nbsp;MOTORS<span class="text-muted-2 fw-normal"> NY</span>
-        </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav mx-lg-auto gap-lg-2">
-            <li class="nav-item"><a class="nav-link" href="inventory.html">Inventory</a></li>
-            <li class="nav-item"><a class="nav-link" href="#trade">Trade / Sell</a></li>
-            <li class="nav-item"><a class="nav-link" href="#financing">Financing</a></li>
-            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-          </ul>
-          <a href="inventory.html" class="btn btn-primary px-3">Browse Inventory</a>
-        </div>
-      </div>
-    </nav>
-  </header>
+    <div class="hero__scroll" aria-hidden="true"><span class="line"></span> Scroll</div>
+  </section>
 
-  <!-- ============================ HERO ============================ -->
-  <section class="hero position-relative">
-    <div class="container py-5">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-5">
-          <p class="eyebrow mb-3">Featured Vehicle</p>
-          <h1 class="display-4 mb-3">Premium pre-owned, delivered to your door.</h1>
-          <p class="fs-5 text-muted-2 mb-4">
-            Hand-selected high-line inventory. Browse the collection, value your
-            trade, or get pre-qualified in minutes — we deliver nationwide.
-          </p>
-          <div class="d-flex flex-wrap gap-2">
-            <a href="inventory.html" class="btn btn-primary btn-lg px-4">Browse Inventory</a>
-            <a href="#trade" class="btn btn-outline-ink btn-lg px-4">Value Your Trade</a>
-            <a href="#financing" class="btn btn-gold btn-lg px-4">Get Financing</a>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <!-- TODO: featured vehicle photo → assets/img -->
-          <div class="ratio ratio-16x9 bg-surface-2 rounded-4 d-flex align-items-center justify-content-center overflow-hidden"
-               data-placeholder="hero-photo">
-            <div class="d-flex flex-column align-items-center text-muted-2">
-              <i class="bi bi-car-front-fill display-1"></i>
-              <span class="small mt-2">Featured vehicle photo</span>
+  <!-- ============================ WE DELIVER NATIONWIDE (dedicated section) ============================ -->
+  <section class="section nation" id="nationwide" aria-label="We deliver nationwide">
+    <div class="container">
+      <div class="nation__grid">
+        <figure class="nation__media" data-reveal data-parallax>
+          <img src="assets/img/vans/van-09.jpg" alt="Mercedes-Benz Sprinter high-roof van ready for nationwide delivery" loading="lazy" />
+          <figcaption class="nation__cap"><i class="bi bi-truck"></i> Insured transport — Baldwin, NY to your driveway</figcaption>
+        </figure>
+
+        <div class="nation__copy" data-reveal style="--d:.1s">
+          <p class="eyebrow">Nationwide Delivery</p>
+          <h2>We deliver — to all 50 states.</h2>
+          <p class="lead-copy">Buy your van entirely online and we bring it to your door. Insured, door-to-door transport anywhere in the country, coordinated by our team from first call to handover.</p>
+
+          <div class="nation__facts" data-reveal-group>
+            <div class="fact">
+              <div class="fact__num"><span data-count="50">50</span> <span class="unit">States</span></div>
+              <p class="fact__label">Delivered coast to coast</p>
+            </div>
+            <div class="fact">
+              <div class="fact__num">Door<span class="unit">-to-</span>Door</div>
+              <p class="fact__label">Enclosed transport available</p>
+            </div>
+            <div class="fact">
+              <div class="fact__num"><span data-count="7">7</span><span class="unit">-Day</span></div>
+              <p class="fact__label">Money-back peace of mind</p>
+            </div>
+            <div class="fact">
+              <div class="fact__num"><span data-count="100">100</span><span class="unit">%</span></div>
+              <p class="fact__label">Online buying process</p>
             </div>
           </div>
+
+          <a href="inventory.html" class="btn btn--ink btn--lg">Find Your Vehicle <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================ FEATURED INVENTORY ============================ -->
-  <section class="section bg-surface-2" id="featured">
+  <section class="section" id="featured">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-end mb-4">
+      <div class="section-head">
         <div>
-          <p class="eyebrow mb-1">Just Arrived</p>
-          <h2 class="h1 mb-0">Featured inventory</h2>
+          <p class="eyebrow">Now Available</p>
+          <h2 class="section-title">Featured Inventory</h2>
         </div>
-        <a href="inventory.html" class="btn btn-outline-ink d-none d-sm-inline-flex">View all <i class="bi bi-arrow-right ms-1"></i></a>
+        <div class="carousel__controls">
+          <a href="inventory.html" class="link-arrow">View all <i class="bi bi-arrow-right arrow"></i></a>
+          <div class="carousel__nav">
+            <button class="carousel__arrow" type="button" data-car-prev aria-label="Previous vehicles"><i class="bi bi-arrow-left"></i></button>
+            <button class="carousel__arrow" type="button" data-car-next aria-label="Next vehicles"><i class="bi bi-arrow-right"></i></button>
+          </div>
+        </div>
       </div>
 
-      <div class="row g-4" data-placeholder="featured-cards">
-        <!-- card ×4 (placeholder) -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <article class="card h-100 card-hover">
-            <div class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center">
-              <i class="bi bi-car-front text-muted-2 fs-1"></i>
-            </div>
-            <div class="card-body">
-              <h3 class="h6 mb-1">2022 Make Model</h3>
-              <p class="text-muted-2 small mb-2">12,500 mi · Trim</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$00,000</span>
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink">View</a>
-              </div>
-            </div>
-          </article>
+      <div class="carousel">
+        <div class="carousel__viewport">
+          <div class="carousel__track" data-car-track data-reveal-group>
+            <!-- vehicle cards injected from inventory data -->
+          </div>
         </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <article class="card h-100 card-hover">
-            <div class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center">
-              <i class="bi bi-car-front text-muted-2 fs-1"></i>
-            </div>
-            <div class="card-body">
-              <h3 class="h6 mb-1">2021 Make Model</h3>
-              <p class="text-muted-2 small mb-2">22,100 mi · Trim</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$00,000</span>
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink">View</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <article class="card h-100 card-hover">
-            <div class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center">
-              <i class="bi bi-car-front text-muted-2 fs-1"></i>
-            </div>
-            <div class="card-body">
-              <h3 class="h6 mb-1">2023 Make Model</h3>
-              <p class="text-muted-2 small mb-2">8,300 mi · Trim</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$00,000</span>
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink">View</a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <article class="card h-100 card-hover">
-            <div class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center">
-              <i class="bi bi-car-front text-muted-2 fs-1"></i>
-            </div>
-            <div class="card-body">
-              <h3 class="h6 mb-1">2020 Make Model</h3>
-              <p class="text-muted-2 small mb-2">31,800 mi · Trim</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$00,000</span>
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink">View</a>
-              </div>
-            </div>
-          </article>
-        </div>
+        <div class="carousel__dots" data-car-dots aria-hidden="true"></div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ TRADE / SELL (simplified lead form) ============================ -->
-  <section class="section" id="trade">
+  <!-- ============================ TRADE / SELL ============================ -->
+  <section class="section trade" id="trade">
+    <span class="trade__ghost" aria-hidden="true">Trade</span>
     <div class="container">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-5">
-          <p class="eyebrow mb-2">Trade or Sell</p>
-          <h2 class="h1 mb-3">Get a real offer on your vehicle.</h2>
-          <p class="text-muted-2 mb-0">
-            Tell us a few details and our team follows up with a number — whether
-            you're trading up or just selling. Quick, no obligation.
-          </p>
+      <div class="trade__grid">
+        <div class="trade__copy" data-reveal>
+          <p class="eyebrow">Trade / Sell Your Vehicle</p>
+          <h2>Get a real offer in minutes.</h2>
+          <p class="lead-copy">Tell us what you drive and our team will prepare a competitive offer quickly — whether you are trading in or selling outright.</p>
+          <ul class="trade__benefits">
+            <li><span class="ic"><i class="bi bi-check-lg"></i></span> Fast, real numbers</li>
+            <li><span class="ic"><i class="bi bi-check-lg"></i></span> Sell or trade — your choice</li>
+            <li><span class="ic"><i class="bi bi-check-lg"></i></span> Nationwide pickup options</li>
+          </ul>
         </div>
-        <div class="col-lg-7">
-          <!-- Simplified lead form (not the full site form) -->
-          <form class="card card-body p-4 p-lg-4" data-placeholder="trade-form" action="#" method="post" novalidate>
-            <div class="row g-3">
-              <div class="col-md-4"><input class="form-control" placeholder="Year" aria-label="Year" /></div>
-              <div class="col-md-4"><input class="form-control" placeholder="Make" aria-label="Make" /></div>
-              <div class="col-md-4"><input class="form-control" placeholder="Model" aria-label="Model" /></div>
-              <div class="col-md-6"><input class="form-control" placeholder="Mileage" aria-label="Mileage" /></div>
-              <div class="col-md-6"><input class="form-control" type="tel" placeholder="Your phone" aria-label="Phone" /></div>
-              <div class="col-12 d-grid d-sm-flex gap-2">
-                <button type="submit" class="btn btn-gold btn-lg px-4">Get My Offer</button>
-                <span class="align-self-center small text-muted-2 ms-sm-2">No obligation · 2-minute form</span>
-              </div>
+
+        <div class="lead" data-reveal style="--d:.12s">
+          <form data-lead novalidate>
+            <div class="lead__grid">
+              <div class="field"><label for="t-year">Year</label><input id="t-year" name="year" inputmode="numeric" placeholder="2021" required /></div>
+              <div class="field"><label for="t-make">Make</label><input id="t-make" name="make" placeholder="Mercedes-Benz" required /></div>
+              <div class="field"><label for="t-model">Model</label><input id="t-model" name="model" placeholder="Sprinter 2500" required /></div>
+              <div class="field"><label for="t-mileage">Mileage</label><input id="t-mileage" name="mileage" inputmode="numeric" placeholder="60,000" /></div>
+              <div class="field"><label for="t-name">Name</label><input id="t-name" name="name" placeholder="Full name" required /></div>
+              <div class="field"><label for="t-phone">Phone</label><input id="t-phone" name="phone" type="tel" placeholder="(212) 555-0147" required /></div>
+              <div class="field field--full"><label for="t-email">Email</label><input id="t-email" name="email" type="email" placeholder="you@email.com" required /></div>
+            </div>
+            <button type="submit" class="btn btn--accent btn--lg btn--block lead__submit">Get My Offer <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></button>
+            <p class="lead__note">No obligation · A real person follows up within one business day.</p>
+
+            <div class="lead__success" data-lead-success>
+              <span class="ic"><i class="bi bi-check-lg"></i></span>
+              <h3>Offer request received.</h3>
+              <p>Thanks — our team will reach out shortly with a competitive number.</p>
             </div>
           </form>
         </div>
@@ -194,61 +221,76 @@
     </div>
   </section>
 
-  <!-- ============================ FINANCING strip ============================ -->
-  <section class="section bg-dark text-white" id="financing">
-    <div class="container">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-8">
-          <p class="eyebrow mb-2" style="color:var(--gm-gold)">Financing</p>
-          <h2 class="h1 text-white mb-2">Pre-qualify without affecting your credit.</h2>
-          <p class="text-white-50 mb-0">Competitive rates through our lending partners. Fast, secure, online.</p>
-        </div>
-        <div class="col-lg-4 text-lg-end">
-          <a href="#" class="btn btn-gold btn-lg px-4" data-placeholder="financing-link">Apply for Financing</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============================ ABOUT ============================ -->
-  <section class="section" id="about">
+  <section class="section about" id="about">
+    <span class="about__num" aria-hidden="true">02</span>
     <div class="container">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-6 order-lg-2">
-          <div class="ratio ratio-4x3 bg-surface-2 rounded-4 d-flex align-items-center justify-content-center" data-placeholder="about-photo">
-            <i class="bi bi-building text-muted-2 display-3"></i>
-          </div>
+      <div class="about__grid">
+        <div class="about__copy" data-reveal>
+          <p class="eyebrow">About</p>
+          <h2>A different kind of dealership.</h2>
+          <p>GM Motors helps businesses and individuals across the United States find the right van for work, transportation, or recreation. We specialize in quality pre-owned Mercedes-Benz Sprinter, Ford Transit, and Ram ProMaster — plus specialty and luxury conversions.</p>
+          <p>Every van is inspected and backed by competitive financing and exceptional service. Value your trade, get financed, and have it delivered door-to-door — simple, affordable, and stress-free.</p>
+          <a href="inventory.html" class="btn btn--ink btn--lg">Explore the Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
         </div>
-        <div class="col-lg-6">
-          <p class="eyebrow mb-2">About Us</p>
-          <h2 class="h1 mb-3">GM Motors NY</h2>
-          <p class="fs-5 text-muted-2">
-            A premium pre-owned dealership specializing in high-line and exotic
-            vehicles. Every car is hand-selected, inspected, and reconditioned to
-            our standard — then delivered to your door, anywhere in the country.
-          </p>
-          <div class="row g-4 mt-1">
-            <div class="col-4"><div class="h2 mb-0">500+</div><div class="small text-muted-2">Cars delivered</div></div>
-            <div class="col-4"><div class="h2 mb-0">50</div><div class="small text-muted-2">States served</div></div>
-            <div class="col-4"><div class="h2 mb-0">4.9★</div><div class="small text-muted-2">Avg. rating</div></div>
-          </div>
-        </div>
+        <figure class="about__media" data-parallax>
+          <img src="assets/img/vans/van-05.jpg" alt="Luxury executive Sprinter conversion interior with captain seats" loading="lazy" />
+          <figcaption class="about__cap">Cargo, crew, passenger &amp; luxury conversions. Nationwide reach.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- ============================ GOOGLE REVIEWS ============================ -->
-  <section class="section bg-surface-2" id="reviews">
+  <!-- ============================ FINANCING ============================ -->
+  <section class="section fin" id="financing">
     <div class="container">
-      <div class="text-center mb-5">
-        <p class="eyebrow mb-1">What buyers say</p>
-        <h2 class="h1 mb-2">Google reviews</h2>
-        <div class="text-warning fs-4"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+      <div class="fin__inner" data-reveal>
+        <div class="fin__text">
+          <p class="eyebrow">Financing</p>
+          <h2>Pre-qualify in minutes — without affecting your credit.</h2>
+          <p>Flexible options for qualified buyers.</p>
+        </div>
+        <a href="#" class="btn btn--accent btn--lg">Apply for Financing <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
       </div>
-      <div class="row g-4" data-placeholder="reviews">
-        <div class="col-md-4"><div class="card card-body h-100"><div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="mb-3">"Seamless purchase and the car was delivered exactly as described."</p><div class="fw-semibold small">— Customer Name</div></div></div>
-        <div class="col-md-4"><div class="card card-body h-100"><div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="mb-3">"Best high-line buying experience I've had. Highly recommend."</p><div class="fw-semibold small">— Customer Name</div></div></div>
-        <div class="col-md-4"><div class="card card-body h-100"><div class="text-warning mb-2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div><p class="mb-3">"Financing was quick and the whole team was a pleasure."</p><div class="fw-semibold small">— Customer Name</div></div></div>
+    </div>
+  </section>
+
+  <!-- ============================ REVIEWS ============================ -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="reviews__head">
+        <p class="reviews__label">What Our Customers Say</p>
+        <h2 class="section-title">Google Reviews</h2>
+        <p class="rating-line"><span class="stars">★★★★★</span> 4.9 / 5 · 220+ reviews</p>
+      </div>
+
+      <div class="reviews__grid" data-reveal-group>
+        <article class="review">
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review__text">"Found the exact Sprinter spec my business needed, did the whole deal from my office, and it showed up clean and ready to work. Easiest van purchase I've made."</p>
+          <div class="review__who">
+            <span class="review__avatar">D</span>
+            <div><div class="review__name">Dominic Russo</div><div class="review__src"><i class="bi bi-google"></i> Google Review</div></div>
+          </div>
+        </article>
+
+        <article class="review review--feature">
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review__text">"They gave me a real trade number on my old van in minutes — no games — and beat my local dealer. Delivery to another state was completely seamless. This is how it should be done."</p>
+          <div class="review__who">
+            <span class="review__avatar">P</span>
+            <div><div class="review__name">Priya Nair</div><div class="review__src"><i class="bi bi-google"></i> Google Review</div></div>
+          </div>
+        </article>
+
+        <article class="review">
+          <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="review__text">"Financing was quick and transparent, and the team actually knew the vans. The Sprinter was exactly as described — I'll be back for the next one for our fleet."</p>
+          <div class="review__who">
+            <span class="review__avatar">G</span>
+            <div><div class="review__name">Garrett Hale</div><div class="review__src"><i class="bi bi-google"></i> Google Review</div></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -256,66 +298,74 @@
   <!-- ============================ INSTAGRAM ============================ -->
   <section class="section" id="instagram">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-end mb-4">
+      <div class="section-head">
         <div>
-          <p class="eyebrow mb-1">Follow along</p>
-          <h2 class="h1 mb-0">@gmmotorsny</h2>
+          <p class="eyebrow">Follow Along</p>
+          <h2 class="section-title">@gmmotorsny</h2>
         </div>
-        <a href="#" class="btn btn-outline-ink" data-placeholder="ig-link"><i class="bi bi-instagram me-1"></i> Follow</a>
+        <a href="#" class="btn btn--outline"><i class="bi bi-instagram"></i> Follow</a>
       </div>
-      <div class="row g-3" data-placeholder="ig-feed">
-        <div class="col-6 col-md-3 col-lg-2"><div class="ratio ratio-1x1 bg-surface-2 rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-instagram text-muted-2 fs-3"></i></div></div>
-        <div class="col-6 col-md-3 col-lg-2"><div class="ratio ratio-1x1 bg-surface-2 rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-instagram text-muted-2 fs-3"></i></div></div>
-        <div class="col-6 col-md-3 col-lg-2"><div class="ratio ratio-1x1 bg-surface-2 rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-instagram text-muted-2 fs-3"></i></div></div>
-        <div class="col-6 col-md-3 col-lg-2"><div class="ratio ratio-1x1 bg-surface-2 rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-instagram text-muted-2 fs-3"></i></div></div>
-        <div class="col-6 col-md-3 col-lg-2"><div class="ratio ratio-1x1 bg-surface-2 rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-instagram text-muted-2 fs-3"></i></div></div>
-        <div class="col-6 col-md-3 col-lg-2"><div class="ratio ratio-1x1 bg-surface-2 rounded-3 d-flex align-items-center justify-content-center"><i class="bi bi-instagram text-muted-2 fs-3"></i></div></div>
+
+      <div class="ig__grid" data-reveal-group>
+        <a href="#" class="ig__tile"><img src="assets/img/vans/van-04.jpg" alt="Black executive Sprinter conversion" loading="lazy" /><span class="ig__overlay"><i class="bi bi-instagram"></i> View post</span></a>
+        <a href="#" class="ig__tile"><img src="assets/img/vans/van-10.jpg" alt="Luxury Sprinter conversion interior with captain seats" loading="lazy" /><span class="ig__overlay"><i class="bi bi-instagram"></i> View post</span></a>
+        <a href="#" class="ig__tile"><img src="assets/img/vans/van-08.jpg" alt="Grey Mercedes-Benz Sprinter passenger van" loading="lazy" /><span class="ig__overlay"><i class="bi bi-instagram"></i> View post</span></a>
+        <a href="#" class="ig__tile"><img src="assets/img/vans/van-03.jpg" alt="Mercedes-Benz Sprinter crew van" loading="lazy" /><span class="ig__overlay"><i class="bi bi-instagram"></i> View post</span></a>
+        <a href="#" class="ig__tile"><img src="assets/img/vans/van-07.jpg" alt="Extended high-roof Sprinter cargo van" loading="lazy" /><span class="ig__overlay"><i class="bi bi-instagram"></i> View post</span></a>
+        <a href="#" class="ig__tile"><img src="assets/img/vans/van-09.jpg" alt="White Sprinter high-roof van" loading="lazy" /><span class="ig__overlay"><i class="bi bi-instagram"></i> View post</span></a>
       </div>
     </div>
   </section>
 
   <!-- ============================ FOOTER ============================ -->
-  <footer class="bg-dark text-white-50 pt-5 pb-4" id="contact">
+  <footer class="footer">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4">
-          <div class="fw-bold fs-4 text-white mb-2">GM&nbsp;MOTORS <span class="fw-normal text-white-50">NY</span></div>
-          <p class="mb-3">Premium pre-owned & high-line vehicles. We deliver nationwide.</p>
-          <div class="d-flex gap-2 fs-5">
-            <a href="#" class="link-light" data-placeholder="social"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="link-light" data-placeholder="social"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="link-light" data-placeholder="social"><i class="bi bi-youtube"></i></a>
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand footer__brandmark" href="index.html" aria-label="GM Motors NY — home">
+            <span class="brand__mark" aria-hidden="true">GM</span>
+            <span class="brand__word">Motors<span class="brand__ny">NY</span></span>
+          </a>
+          <p>Quality pre-owned Sprinter, Transit &amp; ProMaster vans — online buying and nationwide delivery from Baldwin, NY.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
-        <div class="col-6 col-lg-2">
-          <h3 class="h6 text-white">Explore</h3>
-          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-            <li><a class="link-secondary text-decoration-none" href="inventory.html">Inventory</a></li>
-            <li><a class="link-secondary text-decoration-none" href="#trade">Trade / Sell</a></li>
-            <li><a class="link-secondary text-decoration-none" href="#financing">Financing</a></li>
-            <li><a class="link-secondary text-decoration-none" href="#about">About</a></li>
+
+        <nav class="footer__col" aria-label="Shop">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="#financing">Financing</a></li>
+            <li><a href="#trade">Trade / Sell</a></li>
           </ul>
-        </div>
-        <div class="col-6 col-lg-3">
-          <h3 class="h6 text-white">Visit us</h3>
-          <p class="mb-1" data-placeholder="address">000 Address St<br />City, NY 00000</p>
-          <a class="link-light text-decoration-none" href="tel:+15550000000" data-placeholder="phone"><i class="bi bi-telephone me-1"></i> (555) 000-0000</a>
-        </div>
-        <div class="col-lg-3">
-          <h3 class="h6 text-white">Hours</h3>
-          <p class="mb-0" data-placeholder="hours">Mon–Sat: 9am–7pm<br />Sun: By appointment</p>
+        </nav>
+
+        <nav class="footer__col" aria-label="Company">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__contact" id="contact">
+          <h4>Visit / Contact</h4>
+          <p>590 Sunrise Hwy<br />Baldwin, NY 11510</p>
+          <p><a href="tel:+15167080999">(516) 708-0999</a><br /><a href="mailto:gmmotorsny@gmail.com">gmmotorsny@gmail.com</a></p>
         </div>
       </div>
-      <hr class="border-secondary my-4" />
-      <div class="d-flex flex-column flex-sm-row justify-content-between small">
+
+      <div class="footer__bottom">
         <span>© <span data-year>2026</span> GM Motors NY. All rights reserved.</span>
-        <span>We deliver nationwide.</span>
+        <a class="backtop" href="#top">Back to top <span class="ic"><i class="bi bi-arrow-up"></i></span></a>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS + app -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
 </body>
 </html>
