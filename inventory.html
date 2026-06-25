@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory — GM Motors NY</title>
+  <meta name="description" content="Browse GM Motors NY premium pre-owned inventory. Search and filter high-line vehicles. We deliver nationwide." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/theme.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="border-bottom bg-white sticky-top">
+    <div class="bg-dark text-white-50 small">
+      <div class="container d-flex justify-content-between align-items-center py-1">
+        <span><i class="bi bi-truck me-1"></i> We deliver <strong class="text-white">nationwide</strong></span>
+        <a class="link-light text-decoration-none" href="tel:+15550000000" data-placeholder="phone"><i class="bi bi-telephone me-1"></i> (555) 000-0000</a>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="index.html">GM&nbsp;MOTORS<span class="text-muted-2 fw-normal"> NY</span></a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav mx-lg-auto gap-lg-2">
+            <li class="nav-item"><a class="nav-link active" href="inventory.html">Inventory</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#trade">Trade / Sell</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#financing">Financing</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+          </ul>
+          <a href="index.html#trade" class="btn btn-primary px-3">Value Your Trade</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================ PAGE HEAD ============================ -->
+  <section class="bg-surface-2 border-bottom">
+    <div class="container py-4 py-lg-5">
+      <p class="eyebrow mb-1">Our Collection</p>
+      <h1 class="h1 mb-0">Inventory</h1>
+    </div>
+  </section>
+
+  <!-- ============================ FILTER BAR (top) ============================ -->
+  <section class="py-3 bg-white border-bottom sticky-top" style="top:0">
+    <div class="container">
+      <form class="row g-2" data-placeholder="filters" role="search">
+        <div class="col-6 col-lg"><select class="form-select"><option>Make</option></select></div>
+        <div class="col-6 col-lg"><select class="form-select"><option>Model</option></select></div>
+        <div class="col-6 col-lg"><select class="form-select"><option>Year</option></select></div>
+        <div class="col-6 col-lg"><select class="form-select"><option>Price</option></select></div>
+        <div class="col-6 col-lg"><select class="form-select"><option>Body</option></select></div>
+        <div class="col-6 col-lg-auto d-grid"><button class="btn btn-primary px-4"><i class="bi bi-search me-1"></i>Search</button></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================ INVENTORY GRID ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <span class="text-muted-2"><strong class="text-body">12</strong> vehicles available</span>
+        <select class="form-select w-auto"><option>Sort: Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Mileage</option></select>
+      </div>
+
+      <div class="row g-4" data-placeholder="inventory-grid">
+        <!-- ===== vehicle card (template ×N) ===== -->
+        <div class="col-12 col-md-6 col-xl-4">
+          <article class="card h-100 card-hover overflow-hidden">
+            <a href="vehicle.html" class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center text-decoration-none">
+              <i class="bi bi-car-front text-muted-2 display-4"></i>
+            </a>
+            <div class="card-body">
+              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none stretched-link-off">2022 Make Model</a></h2>
+              <p class="text-muted-2 small mb-2">Trim · 12,500 mi · Color</p>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="fs-5 fw-bold">$00,000</span>
+                <a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a>
+              </div>
+              <!-- quick actions -->
+              <div class="d-flex flex-wrap gap-2">
+                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
+                <a href="#" class="btn btn-sm btn-outline-ink flex-fill" data-placeholder="test-drive"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
+                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
+                <a href="#" class="btn btn-sm btn-outline-ink flex-fill" data-placeholder="send-to-phone"><i class="bi bi-phone me-1"></i>Send to Phone</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- duplicate the card above per vehicle (placeholders) -->
+        <div class="col-12 col-md-6 col-xl-4">
+          <article class="card h-100 card-hover overflow-hidden">
+            <a href="vehicle.html" class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center text-decoration-none"><i class="bi bi-car-front text-muted-2 display-4"></i></a>
+            <div class="card-body">
+              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2021 Make Model</a></h2>
+              <p class="text-muted-2 small mb-2">Trim · 22,100 mi · Color</p>
+              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$00,000</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
+                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
+                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
+                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <article class="card h-100 card-hover overflow-hidden">
+            <a href="vehicle.html" class="ratio ratio-4x3 bg-surface-2 d-flex align-items-center justify-content-center text-decoration-none"><i class="bi bi-car-front text-muted-2 display-4"></i></a>
+            <div class="card-body">
+              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2023 Make Model</a></h2>
+              <p class="text-muted-2 small mb-2">Trim · 8,300 mi · Color</p>
+              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$00,000</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
+                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
+                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
+                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="bg-dark text-white-50 pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="fw-bold fs-4 text-white mb-2">GM&nbsp;MOTORS <span class="fw-normal text-white-50">NY</span></div>
+          <p class="mb-0">Premium pre-owned & high-line vehicles. We deliver nationwide.</p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h3 class="h6 text-white">Explore</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li><a class="link-secondary text-decoration-none" href="inventory.html">Inventory</a></li>
+            <li><a class="link-secondary text-decoration-none" href="index.html#trade">Trade / Sell</a></li>
+            <li><a class="link-secondary text-decoration-none" href="index.html#financing">Financing</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-4">
+          <h3 class="h6 text-white">Visit us</h3>
+          <p class="mb-1" data-placeholder="address">000 Address St, City, NY 00000</p>
+          <a class="link-light text-decoration-none" href="tel:+15550000000" data-placeholder="phone"><i class="bi bi-telephone me-1"></i> (555) 000-0000</a>
+        </div>
+      </div>
+      <hr class="border-secondary my-4" />
+      <div class="small">© <span data-year>2026</span> GM Motors NY. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

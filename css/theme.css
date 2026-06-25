@@ -1,0 +1,90 @@
+/* ============================================================
+   GM MOTORS NY — THEME
+   Premium light dealership skin on top of Bootstrap 5.3.
+   Brand tokens live here; re-skin by editing :root.
+   (Brand colours + fonts are placeholders until the client's
+   logo / guidelines arrive.)
+   ============================================================ */
+
+:root {
+  /* ---- brand tokens ---- */
+  --gm-ink:        #15171c;   /* near-black text / primary surfaces */
+  --gm-ink-soft:   #5b626c;   /* muted text */
+  --gm-surface:    #ffffff;   /* page / cards */
+  --gm-surface-2:  #f5f6f8;   /* soft grey sections */
+  --gm-line:       #e6e8ec;   /* hairlines / borders */
+  --gm-gold:       #b3924f;   /* metallic accent (premium touches) */
+  --gm-gold-dark:  #8f7338;
+
+  /* ---- map onto Bootstrap so utilities/components inherit the brand ---- */
+  --bs-primary:        var(--gm-ink);
+  --bs-primary-rgb:    21, 23, 28;
+  --bs-body-color:     var(--gm-ink);
+  --bs-body-color-rgb: 21, 23, 28;
+  --bs-secondary-color: var(--gm-ink-soft);
+  --bs-body-bg:        var(--gm-surface);
+  --bs-border-color:   var(--gm-line);
+  --bs-border-radius:      .55rem;
+  --bs-border-radius-sm:   .4rem;
+  --bs-border-radius-lg:   .85rem;
+  --bs-body-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --bs-emphasis-color: var(--gm-ink);
+  --bs-link-color:      var(--gm-ink);
+  --bs-link-hover-color: var(--gm-gold-dark);
+}
+
+/* ---------- base ---------- */
+body { letter-spacing: -0.005em; }
+
+h1, h2, h3, .display-1, .display-2, .display-3, .display-4, .h1, .h2, .h3 {
+  font-family: "Sora", "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.text-muted-2 { color: var(--gm-ink-soft) !important; }
+
+/* eyebrow / kicker label */
+.eyebrow {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gm-gold-dark);
+}
+
+/* generous section rhythm */
+.section { padding-block: clamp(3.5rem, 6vw, 7rem); }
+.bg-surface-2 { background-color: var(--gm-surface-2); }
+
+/* ---------- buttons ---------- */
+.btn { font-weight: 600; }
+.btn-primary {
+  --bs-btn-bg: var(--gm-ink);
+  --bs-btn-border-color: var(--gm-ink);
+  --bs-btn-hover-bg: #000;
+  --bs-btn-hover-border-color: #000;
+  --bs-btn-active-bg: #000;
+}
+.btn-gold {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--gm-gold);
+  --bs-btn-border-color: var(--gm-gold);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--gm-gold-dark);
+  --bs-btn-hover-border-color: var(--gm-gold-dark);
+}
+.btn-outline-ink {
+  --bs-btn-color: var(--gm-ink);
+  --bs-btn-border-color: var(--gm-line);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--gm-ink);
+  --bs-btn-hover-border-color: var(--gm-ink);
+}
+
+/* ---------- premium card ---------- */
+.card { border-color: var(--gm-line); }
+.card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 1.5rem 2.5rem rgba(21,23,28,.10); }
+
+/* media that leads the layout */
+.media-cover { object-fit: cover; width: 100%; height: 100%; }
