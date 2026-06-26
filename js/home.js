@@ -42,6 +42,7 @@
     initStats();
     initParallax();
     initLux360();
+    initInspectedGlow();
     initForm();
   });
 
@@ -145,12 +146,27 @@
       var r = lux.getBoundingClientRect();
       var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;   // -1..1
       var ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      img.style.transition = "transform .25s var(--ease)";
-      img.style.transform = "translate(" + (-nx * 55) + "px," + (-ny * 26) + "px) scale(1.08)";
+      img.style.transition = "transform .3s var(--ease)";
+      img.style.transform = "translate(" + (-nx * 105) + "px," + (-ny * 52) + "px) scale(1.16)";
     });
     lux.addEventListener("pointerleave", function () {
       img.style.transition = "transform .8s var(--ease)";
-      img.style.transform = "translate(0,0) scale(1.08)";
+      img.style.transform = "translate(0,0) scale(1.16)";
+    });
+  }
+
+  /* ---------- Buy With Confidence: twin glow follows the cursor ---------- */
+  function initInspectedGlow() {
+    var sec = document.querySelector(".inspected");
+    if (!sec || prefersReduced) return;
+    sec.addEventListener("pointermove", function (e) {
+      var r = sec.getBoundingClientRect();
+      sec.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
+      sec.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
+    });
+    sec.addEventListener("pointerleave", function () {
+      sec.style.removeProperty("--mx");
+      sec.style.removeProperty("--my");
     });
   }
 
@@ -163,6 +179,28 @@
     var dotsWrap = $("[data-hero-dots]");
     var IMG_MS = 6000;
     var i = 0, timer = null;
+
+    // per-slide hero copy — swapped as the background changes
+    var heroIntro = { eyebrow: $(".hero__eyebrow"), title: $(".hero__title"), sub: $("[data-hero-sub]"), marker: $(".hero__marker") };
+    var HERO_TEXT = [
+      { eyebrow: "Vans that earn their keep", marker: "Featured",
+        lines: ["The right van —", "ready to work,", "delivered."],
+        sub: "Quality pre-owned Sprinter, Transit & ProMaster vans for work and travel — inspected, financed, and delivered to all 50 states." },
+      { eyebrow: "Delivered nationwide", marker: "Delivery",
+        lines: ["Buy from home.", "We bring the", "van to you."],
+        sub: "Shop online, lock in your price, and we handle insured door-to-door transport to any of the 50 states." },
+      { eyebrow: "Financing & trade", marker: "Financing",
+        lines: ["Real numbers.", "No games.", "Drive sooner."],
+        sub: "A straight value on your current van and competitive financing — sorted before you ever leave the house." }
+    ];
+    function reanimate(el) { if (!el) return; el.classList.remove("hero-swap"); void el.offsetWidth; el.classList.add("hero-swap"); }
+    function setHeroText(n) {
+      var c = HERO_TEXT[n]; if (!c) return;
+      if (heroIntro.eyebrow) { heroIntro.eyebrow.textContent = c.eyebrow; reanimate(heroIntro.eyebrow); }
+      if (heroIntro.title) heroIntro.title.innerHTML = c.lines.map(function (l) { return "<span>" + l + "</span>"; }).join("");
+      if (heroIntro.sub) { heroIntro.sub.textContent = c.sub; reanimate(heroIntro.sub); }
+      if (heroIntro.marker) { heroIntro.marker.innerHTML = '<span class="num">' + ("0" + (n + 1)).slice(-2) + '</span><span>' + c.marker + '</span>'; reanimate(heroIntro.marker); }
+    }
 
     function clearTimer() { if (timer) { window.clearTimeout(timer); timer = null; } }
 
@@ -186,6 +224,7 @@
       var pv = prev.querySelector("video"); if (pv) pv.pause();
       i = (n + slides.length) % slides.length;
       slides[i].classList.add("is-active");
+      setHeroText(i);
       if (dotsWrap) $all("button", dotsWrap).forEach(function (d, k) { d.classList.toggle("is-active", k === i); });
       schedule();
     }
@@ -449,7 +488,8 @@
         var r = it.getBoundingClientRect();
         var off = (r.top + r.height / 2) - window.innerHeight / 2;
         var ty = off * -f;
-        var max = r.height * 0.22;            // stay within the bg overflow, no edge reveal
+        var maxFrac = parseFloat(it.getAttribute("data-parallax-max")) || 0.22;
+        var max = r.height * maxFrac;         // stay within the bg overflow, no edge reveal
         if (ty > max) ty = max; else if (ty < -max) ty = -max;
         it.style.transform = "translateY(" + ty + "px)";
       });

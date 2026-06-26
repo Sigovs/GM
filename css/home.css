@@ -119,6 +119,9 @@ p { margin: 0; }
 .btn--outline .btn__ic, .btn--ghost-light .btn__ic { background: rgba(16,18,24,.07); }
 .nav.is-scrolled .btn--ghost-light .btn__ic { background: rgba(16,18,24,.07); }
 .btn:hover .btn__ic { transform: translateX(4px); }
+/* leading icon (icon before label, e.g. Call) */
+.btn__ic--lead { margin: -.2rem .4rem -.2rem -.35rem; }
+.btn--call:hover .btn__ic { transform: scale(1.08); }
 
 /* tabular figures keep prices and metrics optically aligned */
 .feat-panel__price, .v-card__price, .stat__num, .fact__num, .rating-line { font-variant-numeric: tabular-nums; }
@@ -286,6 +289,10 @@ p { margin: 0; }
 .hero__title--lines span:nth-child(4) { animation-delay: .51s; }
 @keyframes heroSlideLeft { to { opacity: 1; transform: none; } }
 
+/* hero copy swap on slide change */
+.hero-swap { animation: heroSwapUp .7s var(--ease) forwards; }
+@keyframes heroSwapUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
 /* ============================================================
    NATIONWIDE STATS STRIP
    ============================================================ */
@@ -357,15 +364,15 @@ p { margin: 0; }
 /* 360°-look imitation: cursor pans the interior, image pre-scaled for headroom */
 .breaker--lux { cursor: grab; }
 .breaker--lux:active { cursor: grabbing; }
-.breaker--lux .breaker__bg img { transform: scale(1.08); }
+.breaker--lux .breaker__bg img { transform: scale(1.16); }
 .breaker__hint { position: absolute; left: 50%; bottom: clamp(1.4rem, 4vw, 2.4rem); transform: translateX(-50%); z-index: 4; display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; letter-spacing: .02em; color: rgba(255,255,255,.9); background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: .5rem .95rem; border-radius: var(--r-pill); pointer-events: none; transition: opacity .4s var(--ease); }
 .breaker--lux:hover .breaker__hint { opacity: 0; }
 @media (hover: none) { .breaker--lux { cursor: default; } .breaker__hint { display: none; } }
 
 /* foreground grass layer — its own parallax for depth */
 .breaker__grass {
-  position: absolute; left: -2%; right: -2%; bottom: -200px; height: 720px; z-index: 3; pointer-events: none;
-  background: url("../assets/img/vans/grass.png") center bottom / 102% auto no-repeat;
+  position: absolute; left: -2%; right: -2%; bottom: -260px; height: 780px; z-index: 3; pointer-events: none;
+  background: url("../assets/img/vans/grass.png") center bottom / 128% auto no-repeat;
   filter: blur(2px); will-change: transform;
 }
 @media (prefers-reduced-motion: reduce) { .breaker__grass { transform: none !important; } }
@@ -400,8 +407,14 @@ p { margin: 0; }
 
 /* ── Inspected: dark treatment — an intentional beat in the light/dark rhythm ── */
 .inspected { background: #12181D; color: #fff; }
+/* twin radial glow that eases toward the cursor (typed props so it can transition) */
+@property --mx { syntax: "<percentage>"; inherits: true; initial-value: 82%; }
+@property --my { syntax: "<percentage>"; inherits: true; initial-value: 12%; }
 .inspected::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background: radial-gradient(58% 85% at 88% 10%, rgba(63,174,150,.16) 0%, transparent 60%); }
+  background:
+    radial-gradient(42% 60% at var(--mx, 82%) var(--my, 12%), rgba(63,174,150,.24) 0%, transparent 60%),
+    radial-gradient(48% 66% at calc(100% - var(--mx, 82%)) calc(100% - var(--my, 12%)), rgba(63,174,150,.14) 0%, transparent 62%);
+  transition: --mx .4s var(--ease), --my .4s var(--ease); }
 .inspected .eyebrow { color: var(--accent-light); }
 .inspected__copy h2 { color: #fff; }
 .inspected .lead-copy { color: rgba(255,255,255,.68); }
@@ -411,7 +424,10 @@ p { margin: 0; }
 .inspected .btn--ink { background: #fff; color: var(--ink); }
 .inspected .btn--ink:hover { background: #eef3f2; }
 .inspected .btn--ink .btn__ic { background: var(--accent-soft); color: var(--accent-dark); }
-.inspected .stack__card { background: #1B232A; border-color: rgba(255,255,255,.09); box-shadow: 0 22px 45px -22px rgba(0,0,0,.55); }
+.inspected .stack__card { border: 1px solid transparent; box-shadow: 0 22px 45px -22px rgba(0,0,0,.55);
+  background:
+    linear-gradient(#1B232A, #1B232A) padding-box,
+    linear-gradient(135deg, #3FAE96 0%, #0E5E50 100%) border-box; }
 .inspected .stack__ic { background: rgba(63,174,150,.16); color: var(--accent-light); }
 .inspected .stack__card h3 { color: #fff; }
 .inspected .stack__card p { color: rgba(255,255,255,.6); }
