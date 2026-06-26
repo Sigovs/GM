@@ -118,7 +118,7 @@ p { margin: 0; }
 }
 .btn--outline .btn__ic, .btn--ghost-light .btn__ic { background: rgba(16,18,24,.07); }
 .nav.is-scrolled .btn--ghost-light .btn__ic { background: rgba(16,18,24,.07); }
-.btn:hover .btn__ic { transform: translate(3px, -1px); }
+.btn:hover .btn__ic { transform: translateX(4px); }
 
 /* tabular figures keep prices and metrics optically aligned */
 .feat-panel__price, .v-card__price, .stat__num, .fact__num, .rating-line { font-variant-numeric: tabular-nums; }
