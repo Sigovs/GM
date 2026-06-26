@@ -32,12 +32,11 @@
     <div class="container">
       <div class="nav__inner">
         <a class="brand" href="index.html" aria-label="GM Motors NY — home">
-          <span class="brand__mark" aria-hidden="true">GM</span>
-          <span class="brand__word">Motors<span class="brand__ny">NY</span></span>
+          <img class="brand__img" src="assets/img/logo.svg" alt="GM Motors NY" width="171" height="101" />
         </a>
 
         <nav class="nav__links" aria-label="Primary">
-          <a class="nav__link" href="inventory.html">Inventory</a>
+          <a class="nav__link" href="#">Inventory</a>
           <a class="nav__link" href="#trade">Trade / Sell</a>
           <a class="nav__link" href="#about">About</a>
           <a class="nav__link" href="#reviews">Reviews</a>
@@ -45,7 +44,7 @@
 
         <div class="nav__actions">
           <a href="#financing" class="btn btn--ghost-light">Financing</a>
-          <a href="inventory.html" class="btn btn--accent">Browse Inventory</a>
+          <a href="#" class="btn btn--accent">Browse Inventory</a>
         </div>
 
         <button class="nav__toggle" type="button" data-nav-toggle aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
@@ -57,13 +56,13 @@
 
   <!-- mobile drawer -->
   <div class="drawer" id="drawer">
-    <a class="drawer__link" href="inventory.html">Inventory</a>
+    <a class="drawer__link" href="#">Inventory</a>
     <a class="drawer__link" href="#trade">Trade / Sell</a>
     <a class="drawer__link" href="#about">About</a>
     <a class="drawer__link" href="#reviews">Reviews</a>
     <div class="drawer__actions">
       <a href="#financing" class="btn btn--outline btn--block btn--lg">Financing</a>
-      <a href="inventory.html" class="btn btn--accent btn--block btn--lg">Browse Inventory</a>
+      <a href="#" class="btn btn--accent btn--block btn--lg">Browse Inventory</a>
     </div>
   </div>
 
@@ -71,8 +70,8 @@
   <section class="hero">
     <div class="hero__bg">
       <div class="hero__slide is-active"><video src="assets/img/hero/hero1.mp4" autoplay muted playsinline preload="auto" poster="assets/img/hero/GM_hero1.jpg"></video></div>
-      <div class="hero__slide"><img src="assets/img/hero/GM_hero1.jpg" alt="White Mercedes-Benz Sprinter on a desert highway at sunset" /></div>
       <div class="hero__slide"><img src="assets/img/hero/hero2.jpg" alt="White Mercedes-Benz Sprinter on a coastal cliff road at dusk" /></div>
+      <div class="hero__slide"><img src="assets/img/hero/GM_hero1.jpg" alt="White Mercedes-Benz Sprinter on a desert highway at sunset" /></div>
     </div>
     <div class="hero__overlay"></div>
 
@@ -84,10 +83,10 @@
       <div class="hero__grid">
         <div class="hero__intro">
           <p class="eyebrow hero__eyebrow">Vans that earn their keep</p>
-          <h1 class="hero__title">The right van — ready to work, delivered to your door.</h1>
+          <h1 class="hero__title hero__title--lines"><span>The right van —</span><span>ready to work,</span><span>delivered to</span><span>your door.</span></h1>
           <p class="hero__sub" data-hero-sub>Quality pre-owned Sprinter, Transit &amp; ProMaster vans for work and travel — inspected, financed, and delivered to all 50 states.</p>
           <div class="hero__ctas">
-            <a href="inventory.html" class="btn btn--accent btn--lg">View Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+            <a href="#" class="btn btn--accent btn--lg">View Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
             <a href="#trade" class="btn btn--ghost-light btn--lg">Value Your Trade</a>
           </div>
           <p class="hero__assure"><i class="bi bi-shield-check"></i> Every van inspected &amp; history-checked · Nationwide delivery</p>
@@ -95,7 +94,7 @@
 
         <!-- floating featured vehicle panel (populated from inventory data) -->
         <aside class="feat-panel" data-panel aria-label="Featured vehicle">
-          <a href="vehicle.html" class="feat-panel__media">
+          <a href="#" class="feat-panel__media">
             <img data-panel-img src="assets/img/vans/van-12.jpg" alt="2024 Mercedes-Benz Sprinter 3500XD" loading="eager" />
             <span class="feat-panel__badge" data-panel-badge>High Roof Cargo</span>
           </a>
@@ -104,7 +103,7 @@
             <h2 class="feat-panel__name" data-panel-name>2024 Mercedes-Benz Sprinter 3500XD</h2>
             <div class="feat-panel__row">
               <span class="feat-panel__price" data-panel-price>$62,900</span>
-              <a href="vehicle.html" class="feat-panel__link">View details <i class="bi bi-arrow-right arrow"></i></a>
+              <a href="#" class="feat-panel__link">View details <i class="bi bi-arrow-right arrow"></i></a>
             </div>
           </div>
         </aside>
@@ -117,10 +116,11 @@
 
   <!-- ============================ WE DELIVER NATIONWIDE (dedicated section) ============================ -->
   <section class="section nation" id="nationwide" aria-label="We deliver nationwide">
+    <span class="section-num" aria-hidden="true">01</span>
     <div class="container">
       <div class="nation__grid">
-        <figure class="nation__media" data-reveal data-parallax>
-          <img src="assets/img/vans/van-09.jpg" alt="Mercedes-Benz Sprinter high-roof van ready for nationwide delivery" loading="lazy" />
+        <figure class="nation__media" data-reveal="left">
+          <span class="nation__zoom"><img src="assets/img/vans/nationwide-transport.png" alt="Mercedes-Benz Sprinter vans on an enclosed transport truck delivering nationwide" loading="lazy" /></span>
           <figcaption class="nation__cap"><i class="bi bi-truck"></i> Insured transport — Baldwin, NY to your driveway</figcaption>
         </figure>
 
@@ -148,7 +148,7 @@
             </div>
           </div>
 
-          <a href="inventory.html" class="btn btn--ink btn--lg">Find Your Vehicle <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+          <a href="#" class="btn btn--ink btn--lg">Find Your Vehicle <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
         </div>
       </div>
     </div>
@@ -163,7 +163,7 @@
           <h2 class="section-title">Featured Inventory</h2>
         </div>
         <div class="carousel__controls">
-          <a href="inventory.html" class="link-arrow">View all <i class="bi bi-arrow-right arrow"></i></a>
+          <a href="#" class="btn btn--outline">View all <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
           <div class="carousel__nav">
             <button class="carousel__arrow" type="button" data-car-prev aria-label="Previous vehicles"><i class="bi bi-arrow-left"></i></button>
             <button class="carousel__arrow" type="button" data-car-next aria-label="Next vehicles"><i class="bi bi-arrow-right"></i></button>
@@ -184,6 +184,7 @@
 
   <!-- ============================ EVERY VAN INSPECTED ============================ -->
   <section class="section inspected" id="inspected">
+    <span class="section-num" aria-hidden="true">02</span>
     <div class="container">
       <div class="inspected__grid">
         <div class="inspected__copy" data-reveal>
@@ -195,7 +196,7 @@
             <li><span class="ic"><i class="bi bi-check-lg"></i></span> Title &amp; history verified — no surprises</li>
             <li><span class="ic"><i class="bi bi-check-lg"></i></span> Serviced, detailed &amp; road-ready</li>
           </ul>
-          <a href="inventory.html" class="btn btn--ink btn--lg">Browse Inspected Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+          <a href="#" class="btn btn--ink btn--lg">Browse Inspected Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
         </div>
 
         <div class="inspected__visual" data-reveal style="--d:.1s">
@@ -223,11 +224,12 @@
 
   <!-- ============================ HOW IT WORKS ============================ -->
   <section class="section steps" id="how-it-works">
+    <span class="section-num" aria-hidden="true">03</span>
     <div class="container">
       <div class="section-head">
         <div>
           <p class="eyebrow">How It Works</p>
-          <h2 class="section-title">From click to driveway, in three steps.</h2>
+          <h2 class="section-title">From click to driveway,<br />in three steps.</h2>
         </div>
       </div>
       <div class="steps__grid" data-reveal-group>
@@ -255,12 +257,13 @@
 
   <!-- ============================ PHOTO BREAKER — on the road ============================ -->
   <section class="breaker" aria-label="Built for the road">
-    <div class="breaker__bg" data-parallax="0.22"><img src="assets/img/vans/break-road.jpg" alt="White Mercedes-Benz Sprinter on a coastal highway at dusk" loading="lazy" /></div>
+    <div class="breaker__bg" data-parallax="0.22"><img src="assets/img/vans/break-built.jpg" alt="Loading gear into a Mercedes-Benz Sprinter at a modern home at golden hour" loading="lazy" /></div>
     <div class="breaker__overlay"></div>
+    <div class="breaker__grass" data-parallax="-0.26" aria-hidden="true"></div>
     <div class="container breaker__inner" data-reveal>
       <p class="eyebrow eyebrow--light">Built For The Road</p>
       <h2 class="breaker__title">Vans that show up — and keep going.</h2>
-      <a href="inventory.html" class="btn btn--accent btn--lg">Browse Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+      <a href="#" class="btn btn--accent btn--lg">Browse Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
     </div>
   </section>
 
@@ -307,7 +310,7 @@
 
   <!-- ============================ ABOUT ============================ -->
   <section class="section about" id="about">
-    <span class="about__num" aria-hidden="true">02</span>
+    <span class="about__num" aria-hidden="true">04</span>
     <div class="container">
       <div class="about__grid">
         <div class="about__copy" data-reveal>
@@ -318,12 +321,12 @@
           <div class="about__stats">
             <div><span class="about__stat-num"><span data-count="28">28</span></span><span class="about__stat-label">Vans in stock</span></div>
             <div><span class="about__stat-num"><span data-count="50">50</span></span><span class="about__stat-label">States delivered</span></div>
-            <div><span class="about__stat-num">4.9★</span><span class="about__stat-label">220+ Google reviews</span></div>
+            <div><span class="about__stat-num">4.9★</span><span class="about__stat-label">150+ Google reviews</span></div>
           </div>
-          <a href="inventory.html" class="btn btn--ink btn--lg">Explore the Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+          <a href="#" class="btn btn--ink btn--lg">Explore the Inventory <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
         </div>
         <figure class="about__media" data-parallax>
-          <img src="assets/img/vans/van-05.jpg" alt="Luxury executive Sprinter conversion interior with captain seats" loading="lazy" />
+          <video src="assets/img/map.mp4" autoplay muted loop playsinline aria-label="GM Motors nationwide delivery reach across the U.S."></video>
           <figcaption class="about__cap">Cargo, crew, passenger &amp; luxury conversions. Nationwide reach.</figcaption>
         </figure>
       </div>
@@ -356,20 +359,31 @@
     <div class="container breaker__inner" data-reveal>
       <p class="eyebrow eyebrow--light">Beyond Cargo</p>
       <h2 class="breaker__title">From work van to first-class lounge.</h2>
-      <a href="inventory.html" class="btn btn--ghost-light btn--lg">See Luxury Conversions <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
+      <a href="#" class="btn btn--ghost-light btn--lg">See Luxury Conversions <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></a>
     </div>
+    <span class="breaker__hint" aria-hidden="true"><i class="bi bi-arrows-move"></i> Move to look around</span>
   </section>
 
   <!-- ============================ REVIEWS ============================ -->
   <section class="section" id="reviews">
     <div class="container">
       <div class="reviews__head">
-        <p class="reviews__label">What Our Customers Say</p>
-        <h2 class="section-title">Google Reviews</h2>
-        <p class="rating-line"><span class="stars">★★★★★</span> 4.9 / 5 · 220+ reviews</p>
+        <div class="reviews__stars" aria-label="4.9 out of 5 stars">★★★★★</div>
+        <h2 class="section-title">Trusted by businesses<br />across the U.S.</h2>
+        <div class="reviews__metrics">
+          <div class="reviews__metric">
+            <span class="reviews__metric-num">4.9</span>
+            <span class="reviews__metric-label"><i class="bi bi-google"></i> Google Rating</span>
+          </div>
+          <div class="reviews__metric">
+            <span class="reviews__metric-num"><span data-count="150">150</span>+</span>
+            <span class="reviews__metric-label">Reviews</span>
+          </div>
+        </div>
       </div>
 
-      <div class="reviews__grid" data-reveal-group>
+      <div class="carousel reviews__carousel" data-reviews-grid data-reveal>
+        <div class="carousel__viewport"><div class="carousel__track" data-rev-track>
         <article class="review">
           <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
           <p class="review__text">"Found the exact Sprinter spec my business needed, did the whole deal from my office, and it showed up clean and ready to work. Easiest van purchase I've made."</p>
@@ -396,6 +410,12 @@
             <div><div class="review__name">Garrett Hale</div><div class="review__src"><i class="bi bi-google"></i> Google Review</div></div>
           </div>
         </article>
+        </div></div>
+        <div class="reviews__controls">
+          <button type="button" class="reviews__arrow" data-rev-prev aria-label="Previous reviews"><i class="bi bi-arrow-left"></i></button>
+          <div class="carousel__dots reviews__dots" data-reviews-dots aria-label="Reviews pagination"></div>
+          <button type="button" class="reviews__arrow" data-rev-next aria-label="Next reviews"><i class="bi bi-arrow-right"></i></button>
+        </div>
       </div>
     </div>
   </section>
@@ -428,8 +448,7 @@
       <div class="footer__top">
         <div class="footer__brand">
           <a class="brand footer__brandmark" href="index.html" aria-label="GM Motors NY — home">
-            <span class="brand__mark" aria-hidden="true">GM</span>
-            <span class="brand__word">Motors<span class="brand__ny">NY</span></span>
+            <img class="brand__img" src="assets/img/logo.svg" alt="GM Motors NY" width="171" height="101" />
           </a>
           <p>Quality pre-owned Sprinter, Transit &amp; ProMaster vans — online buying and nationwide delivery from Baldwin, NY.</p>
           <div class="footer__social">
@@ -442,7 +461,7 @@
         <nav class="footer__col" aria-label="Shop">
           <h4>Shop</h4>
           <ul>
-            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="#">Inventory</a></li>
             <li><a href="#financing">Financing</a></li>
             <li><a href="#trade">Trade / Sell</a></li>
           </ul>
@@ -466,6 +485,7 @@
 
       <div class="footer__bottom">
         <span>© <span data-year>2026</span> GM Motors NY. All rights reserved.</span>
+        <span class="footer__powered">Powered by <strong>All Auto Network</strong></span>
         <a class="backtop" href="#top">Back to top <span class="ic"><i class="bi bi-arrow-up"></i></span></a>
       </div>
     </div>
