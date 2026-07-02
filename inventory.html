@@ -3,229 +3,214 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inventory — GM Motors NY</title>
-  <meta name="description" content="Browse GM Motors NY premium pre-owned inventory. Search and filter high-line vehicles. We deliver nationwide." />
+  <title>Inventory — GM Motors NY · Pre-Owned Sprinter, Transit &amp; ProMaster Vans</title>
+  <meta name="description" content="Browse GM Motors NY inventory — quality pre-owned Mercedes-Benz Sprinter, Ford Transit, and Freightliner vans. Filter by make, body, price and more. Financing, trade-in, and nationwide delivery." />
+
+  <!-- branded favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A6CE0'/%3E%3Ctext x='32' y='43' font-family='Sora,Arial,sans-serif' font-size='27' font-weight='800' letter-spacing='-1.5' fill='%23ffffff' text-anchor='middle'%3EGM%3C/text%3E%3C/svg%3E" />
+
+  <script>document.documentElement.className += " js";</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link href="css/theme.css" rel="stylesheet" />
+  <link href="css/home-blue.css" rel="stylesheet" />
+  <link href="css/srp.css" rel="stylesheet" />
 </head>
-<body>
+<body id="top">
 
-  <!-- ============================ HEADER ============================ -->
-  <header class="border-bottom bg-white sticky-top">
-    <div class="bg-dark text-white-50 small">
-      <div class="container d-flex justify-content-between align-items-center py-1">
-        <span><i class="bi bi-truck me-1"></i> We deliver <strong class="text-white">nationwide</strong></span>
-        <a class="link-light text-decoration-none" href="tel:+15550000000" data-placeholder="phone"><i class="bi bi-telephone me-1"></i> (555) 000-0000</a>
+  <!-- ============================ NAVBAR ============================ -->
+  <header class="nav nav--solid">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="brand" href="index2.html" aria-label="GM Motors NY — home">
+          <img class="brand__img" src="assets/img/logo-blue.svg" alt="GM Motors NY" width="171" height="101" />
+        </a>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a class="nav__link is-active" href="inventory.html" aria-current="page">Inventory</a>
+          <a class="nav__link" href="index2.html#trade">Trade / Sell</a>
+          <a class="nav__link" href="index2.html#about">About</a>
+          <a class="nav__link" href="index2.html#contact">Contact</a>
+        </nav>
+
+        <div class="nav__actions">
+          <a href="index2.html#financing" class="btn btn--ghost-light">Financing</a>
+          <a href="tel:+15167080999" class="btn btn--accent btn--call"><span class="btn__ic btn__ic--lead"><i class="bi bi-telephone-fill"></i></span> (516) 708-0999</a>
+        </div>
+
+        <button class="nav__toggle" type="button" data-nav-toggle aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-        <a class="navbar-brand fw-bold fs-4" href="index.html">GM&nbsp;MOTORS<span class="text-muted-2 fw-normal"> NY</span></a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="nav">
-          <ul class="navbar-nav mx-lg-auto gap-lg-2">
-            <li class="nav-item"><a class="nav-link active" href="inventory.html">Inventory</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#trade">Trade / Sell</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#financing">Financing</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
-          </ul>
-          <a href="index.html#trade" class="btn btn-primary px-3">Value Your Trade</a>
-        </div>
-      </div>
-    </nav>
   </header>
 
-  <!-- ============================ PAGE HEAD ============================ -->
-  <section class="bg-surface-2 border-bottom">
-    <div class="container py-4 py-lg-5">
-      <p class="eyebrow mb-1">Our Collection</p>
-      <h1 class="h1 mb-0">Inventory</h1>
+  <!-- mobile drawer -->
+  <div class="drawer" id="drawer">
+    <a class="drawer__link" href="inventory.html">Inventory</a>
+    <a class="drawer__link" href="index2.html#trade">Trade / Sell</a>
+    <a class="drawer__link" href="index2.html#about">About</a>
+    <a class="drawer__link" href="index2.html#contact">Contact</a>
+    <div class="drawer__actions">
+      <a href="index2.html#financing" class="btn btn--outline btn--block btn--lg">Financing</a>
+      <a href="tel:+15167080999" class="btn btn--accent btn--block btn--lg">Call (516) 708-0999</a>
     </div>
-  </section>
+  </div>
 
-  <!-- ============================ FILTER BAR (top) ============================ -->
-  <section class="py-3 bg-white border-bottom sticky-top" style="top:0">
+  <main class="srp-main">
+    <!-- ---------- page header ---------- -->
+    <div class="srp-head">
+      <div class="container">
+        <div class="srp-head__inner">
+          <div>
+            <p class="eyebrow">Now available</p>
+            <h1>Inventory</h1>
+          </div>
+          <p class="srp-head__meta"><i class="bi bi-truck"></i> <span data-total-count>—</span> vans · delivered to all 50 states</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- listing ---------- -->
     <div class="container">
-      <form class="row g-2" data-placeholder="filters" role="search">
-        <div class="col-6 col-lg"><select class="form-select"><option>Make</option></select></div>
-        <div class="col-6 col-lg"><select class="form-select"><option>Model</option></select></div>
-        <div class="col-6 col-lg"><select class="form-select"><option>Year</option></select></div>
-        <div class="col-6 col-lg"><select class="form-select"><option>Price</option></select></div>
-        <div class="col-6 col-lg"><select class="form-select"><option>Body</option></select></div>
-        <div class="col-6 col-lg-auto d-grid"><button class="btn btn-primary px-4"><i class="bi bi-search me-1"></i>Search</button></div>
+      <div class="srp">
+
+        <!-- filters -->
+        <aside class="srp__filters" data-filters-panel aria-label="Filter inventory">
+          <div class="filters__head">
+            <h2>Filters</h2>
+            <button type="button" class="filters__clear" data-clear disabled>Clear all</button>
+            <button type="button" class="filters__close" data-filters-close aria-label="Close filters"><i class="bi bi-x-lg"></i></button>
+          </div>
+
+          <div class="srp__search">
+            <i class="bi bi-search"></i>
+            <input type="search" data-search placeholder="Search year, make, model…" aria-label="Search inventory" />
+          </div>
+
+          <div data-filter-groups><!-- filter groups injected by JS --></div>
+        </aside>
+
+        <!-- results -->
+        <section class="srp__results" aria-label="Vehicles">
+          <div class="srp__toolbar">
+            <button type="button" class="btn btn--outline btn--sm srp__filter-toggle" data-filters-open><i class="bi bi-sliders"></i> Filters</button>
+            <p class="srp__count"><span data-result-count>—</span> vehicles</p>
+            <div class="srp__toolbar-right">
+              <label class="srp__sort">Sort
+                <select data-sort aria-label="Sort vehicles">
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="year-desc">Year: Newest</option>
+                  <option value="mileage-asc">Mileage: Lowest</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="srp__active" data-chips></div>
+
+          <div class="srp__grid" data-grid></div>
+
+          <div class="srp__empty" data-empty>
+            <span class="ic"><i class="bi bi-binoculars"></i></span>
+            <h3>No vans match those filters</h3>
+            <p>Try widening your price or mileage range, or clear a filter.</p>
+            <button type="button" class="btn btn--accent" data-clear-2>Clear all filters</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="srp__backdrop" data-backdrop></div>
+
+  <!-- ============================ LEAD MODAL ============================ -->
+  <div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Close"><i class="bi bi-x-lg"></i></button>
+
+      <form data-modal-form>
+        <p class="modal__eyebrow" data-modal-eyebrow>Request</p>
+        <h3 class="modal__title" id="modalTitle" data-modal-title>Get in touch</h3>
+        <div class="modal__veh" data-modal-veh></div>
+
+        <div class="modal__grid">
+          <div class="field"><label>Full name</label><input name="name" required placeholder="Jordan Alvarez" /></div>
+          <div class="field"><label>Phone</label><input name="phone" type="tel" required placeholder="(516) 555-0142" /></div>
+          <div class="field field--full"><label>Email</label><input name="email" type="email" required placeholder="you@company.com" /></div>
+          <div class="field field--full"><label>Message <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label><input name="message" placeholder="Best time to reach you, questions…" /></div>
+        </div>
+
+        <button type="submit" class="btn btn--accent btn--lg btn--block" style="margin-top:1.15rem">Send request <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></button>
+        <p class="lead__note" style="margin-top:.8rem;text-align:center;font-size:.8rem;color:var(--ink-faint)">No spam. We reply fast during business hours.</p>
       </form>
-    </div>
-  </section>
 
-  <!-- ============================ INVENTORY GRID ============================ -->
-  <section class="section">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <span class="text-muted-2"><strong class="text-body">6</strong> vehicles available</span>
-        <select class="form-select w-auto"><option>Sort: Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Mileage</option></select>
-      </div>
-
-      <div class="row g-4" data-reveal-group>
-        <!-- Porsche 911 -->
-        <div class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 card-hover overflow-hidden">
-            <a href="vehicle.html" class="ratio ratio-4x3 d-block overflow-hidden">
-              <img src="assets/img/vehicles/porsche-911-front.jpg" alt="2022 Porsche 911 Carrera S" class="media-cover" loading="lazy" />
-            </a>
-            <div class="card-body">
-              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2022 Porsche 911 Carrera S</a></h2>
-              <p class="text-muted-2 small mb-2">Carrera S · 14,210 mi · Carrara White</p>
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="fs-5 fw-bold">$128,900</span>
-                <a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a>
-              </div>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill" data-placeholder="test-drive"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
-                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill" data-placeholder="send-to-phone"><i class="bi bi-phone me-1"></i>Send to Phone</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Mercedes-AMG G 63 -->
-        <div class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 card-hover overflow-hidden">
-            <a href="vehicle.html" class="ratio ratio-4x3 d-block overflow-hidden">
-              <img src="assets/img/vehicles/amg-g63.jpg" alt="2021 Mercedes-AMG G 63" class="media-cover" loading="lazy" />
-            </a>
-            <div class="card-body">
-              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2021 Mercedes-AMG G 63</a></h2>
-              <p class="text-muted-2 small mb-2">4MATIC · 21,540 mi · Obsidian Black</p>
-              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$164,500</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
-                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- BMW M4 Competition -->
-        <div class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 card-hover overflow-hidden">
-            <a href="vehicle.html" class="ratio ratio-4x3 d-block overflow-hidden">
-              <img src="assets/img/vehicles/bmw-m4.jpg" alt="2023 BMW M4 Competition xDrive" class="media-cover" loading="lazy" />
-            </a>
-            <div class="card-body">
-              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2023 BMW M4 Competition xDrive</a></h2>
-              <p class="text-muted-2 small mb-2">Competition · 8,930 mi · Isle of Man Green</p>
-              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$89,750</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
-                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Audi RS 7 -->
-        <div class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 card-hover overflow-hidden">
-            <a href="vehicle.html" class="ratio ratio-4x3 d-block overflow-hidden">
-              <img src="assets/img/vehicles/audi-rs7.jpg" alt="2021 Audi RS 7 Sportback" class="media-cover" loading="lazy" />
-            </a>
-            <div class="card-body">
-              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2021 Audi RS 7 Sportback</a></h2>
-              <p class="text-muted-2 small mb-2">quattro · 18,400 mi · Nardo Grey</p>
-              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$99,800</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
-                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Range Rover Sport -->
-        <div class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 card-hover overflow-hidden">
-            <a href="vehicle.html" class="ratio ratio-4x3 d-block overflow-hidden">
-              <img src="assets/img/vehicles/range-rover-sport.jpg" alt="2022 Range Rover Sport HSE" class="media-cover" loading="lazy" />
-            </a>
-            <div class="card-body">
-              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2022 Range Rover Sport HSE</a></h2>
-              <p class="text-muted-2 small mb-2">HSE · 24,750 mi · Santorini Black</p>
-              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$79,900</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
-                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Corvette Stingray -->
-        <div class="col-12 col-md-6 col-xl-4">
-          <article class="card h-100 card-hover overflow-hidden">
-            <a href="vehicle.html" class="ratio ratio-4x3 d-block overflow-hidden">
-              <img src="assets/img/vehicles/corvette-stingray.jpg" alt="2023 Chevrolet Corvette Stingray Z51" class="media-cover" loading="lazy" />
-            </a>
-            <div class="card-body">
-              <h2 class="h5 mb-1"><a href="vehicle.html" class="link-body-emphasis text-decoration-none">2023 Corvette Stingray Z51</a></h2>
-              <p class="text-muted-2 small mb-2">Z51 · 6,120 mi · Torch Red</p>
-              <div class="d-flex justify-content-between align-items-center mb-3"><span class="fs-5 fw-bold">$84,300</span><a href="index.html#financing" class="btn btn-sm btn-gold">Finance</a></div>
-              <div class="d-flex flex-wrap gap-2">
-                <a href="vehicle.html" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-images me-1"></i>Photos</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-calendar-check me-1"></i>Test Drive</a>
-                <a href="index.html#financing" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-cash-coin me-1"></i>Financing</a>
-                <a href="#" class="btn btn-sm btn-outline-ink flex-fill"><i class="bi bi-phone me-1"></i>Send to Phone</a>
-              </div>
-            </div>
-          </article>
-        </div>
+      <div class="modal__success" data-modal-success>
+        <span class="ic"><i class="bi bi-check-lg"></i></span>
+        <h3 class="modal__title">Request sent</h3>
+        <p style="color:var(--ink-soft);margin-top:.4rem">Thanks — a GM Motors specialist will reach out shortly.</p>
+        <button type="button" class="btn btn--outline" data-modal-close style="margin-top:1.3rem">Close</button>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ============================ FOOTER ============================ -->
-  <footer class="bg-dark text-white-50 pt-5 pb-4">
+  <footer class="footer">
     <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-5">
-          <div class="fw-bold fs-4 text-white mb-2">GM&nbsp;MOTORS <span class="fw-normal text-white-50">NY</span></div>
-          <p class="mb-0">Premium pre-owned & high-line vehicles. We deliver nationwide.</p>
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand footer__brandmark" href="index2.html" aria-label="GM Motors NY — home">
+            <img class="brand__img" src="assets/img/logo-blue.svg" alt="GM Motors NY" width="171" height="101" />
+          </a>
+          <p>Quality pre-owned Sprinter, Transit &amp; ProMaster vans — online buying and nationwide delivery from Baldwin, NY.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
         </div>
-        <div class="col-6 col-lg-3">
-          <h3 class="h6 text-white">Explore</h3>
-          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-            <li><a class="link-secondary text-decoration-none" href="inventory.html">Inventory</a></li>
-            <li><a class="link-secondary text-decoration-none" href="index.html#trade">Trade / Sell</a></li>
-            <li><a class="link-secondary text-decoration-none" href="index.html#financing">Financing</a></li>
+
+        <nav class="footer__col" aria-label="Shop">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="index2.html#financing">Financing</a></li>
+            <li><a href="index2.html#trade">Trade / Sell</a></li>
           </ul>
-        </div>
-        <div class="col-6 col-lg-4">
-          <h3 class="h6 text-white">Visit us</h3>
-          <p class="mb-1" data-placeholder="address">000 Address St, City, NY 00000</p>
-          <a class="link-light text-decoration-none" href="tel:+15550000000" data-placeholder="phone"><i class="bi bi-telephone me-1"></i> (555) 000-0000</a>
+        </nav>
+
+        <nav class="footer__col" aria-label="Company">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index2.html#about">About</a></li>
+            <li><a href="index2.html#reviews">Reviews</a></li>
+            <li><a href="index2.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__contact" id="contact">
+          <h4>Visit / Contact</h4>
+          <p>590 Sunrise Hwy<br />Baldwin, NY 11510</p>
+          <p><a href="tel:+15167080999">(516) 708-0999</a><br /><a href="mailto:gmmotorsny@gmail.com">gmmotorsny@gmail.com</a></p>
         </div>
       </div>
-      <hr class="border-secondary my-4" />
-      <div class="small">© <span data-year>2026</span> GM Motors NY. All rights reserved.</div>
+
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> GM Motors NY. All rights reserved.</span>
+        <span class="footer__powered">Powered by <strong>All Auto Network</strong></span>
+        <a class="backtop" href="#top">Back to top <span class="ic"><i class="bi bi-arrow-up"></i></span></a>
+      </div>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/inventory-data.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/inventory.js"></script>
 </body>
 </html>
