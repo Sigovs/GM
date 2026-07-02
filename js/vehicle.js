@@ -49,6 +49,14 @@
     ["bi-palette", V.color]
   ].map(function (s) { return '<span class="vdp__spec-chip"><i class="bi ' + s[0] + '"></i>' + s[1] + "</span>"; }).join("");
 
+  /* ---------- description ---------- */
+  var descEl = $("[data-desc]");
+  if (descEl) {
+    descEl.textContent = "This " + TITLE + " (" + V.trim + ") is a " + V.body.toLowerCase() + " with " +
+      miles(V.mileage) + " on the clock, " + driveLong().toLowerCase() + ", and the " + V.transmission +
+      " transmission. It's been multi-point inspected, serviced, and detailed — buy the whole thing online and we deliver it insured to your door, anywhere in the 50 states.";
+  }
+
   /* ---------- gallery ---------- */
   var images = (V.images && V.images.length) ? V.images : [V.image];
   var gi = 0;
@@ -117,7 +125,7 @@
     var status = v.status === "sold" ? '<span class="v-card__status v-card__status--sold">Sold</span>'
       : v.status === "pending" ? '<span class="v-card__status v-card__status--pending">Sale in Progress</span>' : "";
     return '<a class="v-card' + (v.status === "sold" ? " is-sold" : "") + '" href="vehicle.html?id=' + v.id + '">' +
-      '<div class="v-card__media"><img src="' + v.image + '" alt="' + t + '" loading="lazy" />' + status + "</div>" +
+      '<div class="v-card__media"><img src="' + v.image + '" alt="' + t + '" />' + status + "</div>" +
       '<div class="v-card__body"><h3 class="v-card__name">' + t + "</h3>" +
       '<div class="v-card__meta"><span>' + v.trim + '</span><span>' + miles(v.mileage) + "</span><span>" + v.drivetrain + "</span></div>" +
       '<div class="v-card__foot"><span class="v-card__price">' + usd(v.price) + '</span><span class="v-card__cta">View <i class="bi bi-arrow-right arrow"></i></span></div>' +
