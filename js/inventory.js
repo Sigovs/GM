@@ -286,12 +286,18 @@
   function closeModal() { modal.classList.remove("is-open"); document.body.classList.remove("modal-open"); }
 
   grid.addEventListener("click", function (e) {
-    var act = e.target.closest("[data-act]"); if (!act) return;
-    e.preventDefault();
-    var cardEl = act.closest(".v-card"); if (!cardEl) return;
-    var v = byId(cardEl.getAttribute("data-id")); if (!v) return;
-    if (act.getAttribute("data-act") === "photos") { location.href = "vehicle.html?id=" + v.id; return; }
-    openModal(v, act.getAttribute("data-act"));
+    var act = e.target.closest("[data-act]");
+    if (act) {
+      e.preventDefault();
+      var cardEl = act.closest(".v-card"); if (!cardEl) return;
+      var v = byId(cardEl.getAttribute("data-id")); if (!v) return;
+      if (act.getAttribute("data-act") === "photos") { location.href = "vehicle.html?id=" + v.id; return; }
+      openModal(v, act.getAttribute("data-act"));
+      return;
+    }
+    // any other click on the card → open the VDP
+    var mc = e.target.closest(".v-card");
+    if (mc) location.href = "vehicle.html?id=" + mc.getAttribute("data-id");
   });
   $$("[data-modal-close]").forEach(function (el) { el.addEventListener("click", closeModal); });
   $("[data-modal-form]").addEventListener("submit", function (e) {

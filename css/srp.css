@@ -157,3 +157,6 @@
 /* card title links to the VDP */
 .v-card__name a { color: inherit; transition: color .2s; }
 .v-card__name a:hover { color: var(--accent-dark); }
+
+/* whole card is clickable → VDP (quick-action buttons still act on their own) */
+.srp__grid .v-card { cursor: pointer; }
