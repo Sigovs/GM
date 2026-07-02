@@ -19,14 +19,15 @@
 
   /* ---------- derive extra specs ---------- */
   function engine() {
+    if (V.engine) return V.engine;
     if (V.make === "Ford") return "3.5L EcoBoost V6";
     if (/Diesel/.test(V.trim)) return "4-Cyl Turbo Diesel";
     if (/V6/.test(V.trim)) return "V6 Gas";
     return "—";
   }
-  function fuel() { return (V.make === "Ford" || /V6/.test(V.trim)) ? "Gasoline" : "Diesel"; }
+  function fuel() { return V.fuel ? V.fuel : (V.make === "Ford" || /V6/.test(V.trim)) ? "Gasoline" : "Diesel"; }
   function driveLong() { return V.drivetrain === "RWD" ? "Rear-wheel drive" : V.drivetrain === "AWD" ? "All-wheel drive" : V.drivetrain === "4MATIC" ? "4MATIC all-wheel drive" : V.drivetrain; }
-  var STOCK = "GM-" + V.id.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  var STOCK = V.stock ? ("GM-" + V.stock) : ("GM-" + V.id.toUpperCase().replace(/[^A-Z0-9]/g, ""));
 
   /* ---------- head / title / breadcrumb ---------- */
   document.title = TITLE + " — GM Motors NY";
@@ -58,11 +59,16 @@
   }
 
   /* ---------- gallery ---------- */
-  var images = (V.images && V.images.length) ? V.images : [V.image];
+  function buildImages() {
+    if (V.images && V.images.length) return V.images;
+    // demo gallery: this van's own photo first, then other stock photos as extra angles
+    var others = DATA.map(function (v) { return v.image; }).filter(function (p) { return p !== V.image; });
+    return [V.image].concat(others).slice(0, 6);
+  }
+  var images = buildImages();
   var gi = 0;
   var mainImg = $("[data-main-img]");
   var counter = $("[data-gallery-counter]");
-  var thumbsWrap = $("[data-gallery-thumbs]");
   var gallery = $("[data-gallery]");
   if (V.status === "sold") {
     gallery.classList.add("is-sold");
@@ -70,31 +76,54 @@
   } else if (V.status === "pending") {
     gallery.insertAdjacentHTML("afterbegin", '<span class="v-card__status v-card__status--pending">Sale in Progress</span>');
   }
-  function showImg(i) {
+  function showMain(i) {
     gi = (i + images.length) % images.length;
     mainImg.src = images[gi]; mainImg.alt = TITLE + " — photo " + (gi + 1);
     counter.textContent = (gi + 1) + " / " + images.length;
-    $$(".vdp__thumb", thumbsWrap).forEach(function (t, k) { t.classList.toggle("is-active", k === gi); });
   }
-  thumbsWrap.innerHTML = images.map(function (src, k) {
-    return '<button class="vdp__thumb' + (k === 0 ? " is-active" : "") + '" data-thumb="' + k + '"><img src="' + src + '" alt="" /></button>';
-  }).join("");
-  thumbsWrap.addEventListener("click", function (e) { var t = e.target.closest("[data-thumb]"); if (t) showImg(+t.getAttribute("data-thumb")); });
-  $("[data-gallery-prev]").addEventListener("click", function () { showImg(gi - 1); });
-  $("[data-gallery-next]").addEventListener("click", function () { showImg(gi + 1); });
-  if (images.length < 2) { $(".vdp__arrows").style.display = "none"; }
-  showImg(0);
+  $("[data-gallery-prev]").addEventListener("click", function (e) { e.stopPropagation(); showMain(gi - 1); });
+  $("[data-gallery-next]").addEventListener("click", function (e) { e.stopPropagation(); showMain(gi + 1); });
+  if (images.length < 2) $(".vdp__arrows").style.display = "none";
+  $("[data-viewall-count]").textContent = "View all " + images.length + " photos";
+  showMain(0);
 
-  // lightbox
+  // all-photos grid (below History)
+  var pgrid = $("[data-photo-grid]");
+  if (pgrid) pgrid.innerHTML = images.map(function (src, k) {
+    return '<button type="button" data-photo="' + k + '"><img src="' + src + '" alt="' + TITLE + " — photo " + (k + 1) + '" loading="lazy" /></button>';
+  }).join("");
+
+  // lightbox (gallery-aware: prev/next, keyboard, counter)
+  function openLightbox(start) {
+    var i = start;
+    var lb = document.createElement("div"); lb.className = "lb";
+    var nav = images.length > 1
+      ? '<button class="lb__btn lb__prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button><button class="lb__btn lb__next" aria-label="Next"><i class="bi bi-chevron-right"></i></button><span class="lb__counter"></span>'
+      : "";
+    lb.innerHTML = '<img class="lb__img" src="" alt="' + TITLE + '" /><button class="lb__btn lb__close" aria-label="Close"><i class="bi bi-x-lg"></i></button>' + nav;
+    document.body.appendChild(lb); document.body.classList.add("modal-open");
+    var imgEl = lb.querySelector(".lb__img"), cEl = lb.querySelector(".lb__counter");
+    function upd() { imgEl.src = images[i]; if (cEl) cEl.textContent = (i + 1) + " / " + images.length; }
+    function go(d) { i = (i + d + images.length) % images.length; upd(); }
+    function close() { lb.remove(); document.body.classList.remove("modal-open"); document.removeEventListener("keydown", key); }
+    function key(e) { if (e.key === "Escape") close(); else if (e.key === "ArrowLeft") go(-1); else if (e.key === "ArrowRight") go(1); }
+    lb.addEventListener("click", function (e) {
+      if (e.target.closest(".lb__next")) go(1);
+      else if (e.target.closest(".lb__prev")) go(-1);
+      else if (e.target.closest(".lb__close") || e.target === lb) close();
+    });
+    document.addEventListener("keydown", key);
+    upd();
+  }
+  $("[data-fullscreen]").addEventListener("click", function (e) { e.stopPropagation(); openLightbox(gi); });
   $("[data-gallery-main]").addEventListener("click", function (e) {
-    if (e.target.closest(".vdp__arrow")) return;
-    var lb = document.createElement("div");
-    lb.className = "vdp-lightbox";
-    lb.innerHTML = '<img src="' + images[gi] + '" alt="' + TITLE + '" />';
-    lb.style.cssText = "position:fixed;inset:0;z-index:300;background:rgba(9,13,17,.92);display:grid;place-items:center;padding:2rem;cursor:zoom-out";
-    lb.querySelector("img").style.cssText = "max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)";
-    lb.addEventListener("click", function () { lb.remove(); });
-    document.body.appendChild(lb);
+    if (e.target.closest(".vdp__arrow") || e.target.closest(".vdp__viewall") || e.target.closest(".vdp__fs")) return;
+    openLightbox(gi);
+  });
+  if (pgrid) pgrid.addEventListener("click", function (e) { var b = e.target.closest("[data-photo]"); if (b) openLightbox(+b.getAttribute("data-photo")); });
+  $("[data-viewall]").addEventListener("click", function (e) {
+    e.stopPropagation();
+    var t = document.getElementById("photos"); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   /* ---------- highlights ---------- */
@@ -117,7 +146,7 @@
   $("[data-specs]").innerHTML =
     specGroup("Overview", [["Year", V.year], ["Make", V.make], ["Model", V.model], ["Trim", V.trim], ["Body", V.body], ["Stock #", STOCK]]) +
     specGroup("Powertrain", [["Engine", engine()], ["Fuel", fuel()], ["Transmission", V.transmission], ["Drivetrain", driveLong()]]) +
-    specGroup("Details", [["Mileage", miles(V.mileage)], ["Exterior", V.color], ["Interior", "Black cloth"], ["VIN", "Available on request"]]);
+    specGroup("Details", [["Mileage", miles(V.mileage)], ["Exterior", V.color], ["Interior", V.interior || "Black cloth"], ["VIN", "Available on request"]]);
 
   /* ---------- related ---------- */
   function relatedCard(v) {

@@ -72,10 +72,11 @@
         <div class="vdp__gallery" data-gallery>
           <div class="vdp__main" data-gallery-main>
             <img src="" alt="" data-main-img />
+            <button class="vdp__fs" type="button" data-fullscreen aria-label="View full screen"><i class="bi bi-arrows-fullscreen"></i></button>
             <div class="vdp__arrows"><button class="vdp__arrow" data-gallery-prev aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button><button class="vdp__arrow" data-gallery-next aria-label="Next photo"><i class="bi bi-chevron-right"></i></button></div>
+            <button class="vdp__viewall" type="button" data-viewall><i class="bi bi-images"></i> <span data-viewall-count>View all photos</span></button>
             <span class="vdp__counter" data-gallery-counter>1 / 1</span>
           </div>
-          <div class="vdp__thumbs" data-gallery-thumbs></div>
         </div>
 
         <div class="vdp__overview">
@@ -137,6 +138,12 @@
           <div class="vdp-hist"><span class="ic"><i class="bi bi-droplet"></i></span><span>Serviced &amp; detailed<small>Road-ready on delivery</small></span></div>
           <div class="vdp-hist"><span class="ic"><i class="bi bi-truck"></i></span><span>Nationwide delivery<small>Insured, door-to-door to 50 states</small></span></div>
         </div>
+      </section>
+
+      <!-- all photos -->
+      <section class="vdp-section" id="photos">
+        <h2 class="vdp-section__title">Photos</h2>
+        <div class="vdp-photos" data-photo-grid></div>
       </section>
 
       <!-- financing / trade band -->

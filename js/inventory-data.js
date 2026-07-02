@@ -4,7 +4,12 @@
    ============================================================ */
 (function () {
   var IMG = "assets/img/vans/";
+  var VEH = "assets/img/vehicles/sprinter-1187/";
+  var SPRINTER_1187 = [];
+  for (var _i = 1; _i <= 32; _i++) SPRINTER_1187.push(VEH + ("0" + _i).slice(-2) + ".jpg");
+
   window.GM_INVENTORY = [
+    { id: "sprinter753452", year: 2025, make: "Mercedes-Benz", model: "Sprinter 3500", trim: "170WB Extended · 15-Passenger", price: 129995, mileage: 25, drivetrain: "RWD", transmission: "9-Speed Automatic", body: "Passenger Van", color: "Obsidian Black Metallic", engine: "4-Cyl 2.0L Turbo Diesel", fuel: "Bio-diesel", interior: "Maturin Black", stock: "1187", image: VEH + "01.jpg", images: SPRINTER_1187, featured: true },
     { id: "s3500xd24", year: 2024, make: "Mercedes-Benz", model: "Sprinter 3500XD", trim: "High Roof 4-Cyl Diesel HO",       price: 62900,  mileage: 12980,  drivetrain: "RWD",    transmission: "7G-TRONIC",     body: "High Roof Cargo",   color: "Arctic White",  image: IMG + "van-12.jpg", featured: true },
     { id: "s4500_22",  year: 2022, make: "Mercedes-Benz", model: "Sprinter 4500",   trim: "High Roof V6",                    price: 54900,  mileage: 41300,  drivetrain: "RWD",    transmission: "7G-TRONIC",     body: "Extended Cargo",    color: "Arctic White",  image: IMG + "van-07.jpg" },
     { id: "s2500d_23", year: 2023, make: "Mercedes-Benz", model: "Sprinter 2500",   trim: "High Roof 4-Cyl Diesel",          price: 48500,  mileage: 28770,  drivetrain: "RWD",    transmission: "7G-TRONIC",     body: "Crew Van",          color: "Arctic White",  image: IMG + "van-03.jpg", status: "pending" },
