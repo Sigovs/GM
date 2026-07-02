@@ -153,3 +153,7 @@
 .v-card__status--sold { background: rgba(9,13,17,.9); color: #fff; }
 .v-card__status--pending { background: #B7791F; color: #fff; }
 .v-card.is-sold .v-card__media img { filter: grayscale(.45) brightness(.9); }
+
+/* card title links to the VDP */
+.v-card__name a { color: inherit; transition: color .2s; }
+.v-card__name a:hover { color: var(--accent-dark); }

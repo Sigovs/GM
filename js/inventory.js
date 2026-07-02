@@ -152,12 +152,12 @@
         '</div>' +
       '</div>' +
       '<div class="v-card__body">' +
-        '<h3 class="v-card__name">' + title + '</h3>' +
+        '<h3 class="v-card__name"><a href="vehicle.html?id=' + v.id + '">' + title + '</a></h3>' +
         '<div class="v-card__meta"><span>' + v.trim + '</span><span>' + miles(v.mileage) + '</span><span>' + v.drivetrain + '</span><span>' + v.transmission + '</span></div>' +
         '<div class="v-card__foot"><span class="v-card__price">' + usd(v.price) + '</span></div>' +
         '<div class="v-card__ctas">' +
           '<button type="button" class="btn btn--outline btn--sm" data-act="finance"><i class="bi bi-cash-coin"></i> Finance</button>' +
-          '<a href="#" class="v-card__cta" data-act="details">View Details <i class="bi bi-arrow-right arrow"></i></a>' +
+          '<a href="vehicle.html?id=' + v.id + '" class="v-card__cta">View Details <i class="bi bi-arrow-right arrow"></i></a>' +
         '</div>' +
       '</div>' +
     '</article>';
@@ -290,6 +290,7 @@
     e.preventDefault();
     var cardEl = act.closest(".v-card"); if (!cardEl) return;
     var v = byId(cardEl.getAttribute("data-id")); if (!v) return;
+    if (act.getAttribute("data-act") === "photos") { location.href = "vehicle.html?id=" + v.id; return; }
     openModal(v, act.getAttribute("data-act"));
   });
   $$("[data-modal-close]").forEach(function (el) { el.addEventListener("click", closeModal); });
