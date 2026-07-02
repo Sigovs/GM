@@ -147,3 +147,9 @@
 /* active nav link (current page) */
 .nav.nav--solid .nav__link.is-active { color: var(--ink); }
 .nav.nav--solid .nav__link.is-active::after { transform: scaleX(1); }
+
+/* status tags (SOLD / Sale in Progress) — only on cards that carry a status */
+.v-card__status { position: absolute; top: .85rem; left: .85rem; z-index: 2; font-size: .66rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: .36rem .72rem; border-radius: var(--r-pill); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.v-card__status--sold { background: rgba(9,13,17,.9); color: #fff; }
+.v-card__status--pending { background: #B7791F; color: #fff; }
+.v-card.is-sold .v-card__media img { filter: grayscale(.45) brightness(.9); }

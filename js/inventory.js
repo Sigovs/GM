@@ -137,10 +137,13 @@
   /* ---------- card ---------- */
   function card(v) {
     var title = v.year + " " + v.make + " " + v.model;
-    return '<article class="v-card" data-id="' + v.id + '">' +
+    var status = v.status === "sold" ? '<span class="v-card__status v-card__status--sold">Sold</span>'
+      : v.status === "pending" ? '<span class="v-card__status v-card__status--pending">Sale in Progress</span>' : "";
+    var cls = "v-card" + (v.status === "sold" ? " is-sold" : "");
+    return '<article class="' + cls + '" data-id="' + v.id + '">' +
       '<div class="v-card__media">' +
         '<img src="' + v.image + '" alt="' + title + '" loading="lazy" />' +
-        '<span class="v-card__badge">' + v.body + '</span>' +
+        status +
         '<div class="v-card__actions">' +
           '<button type="button" class="qbtn" data-act="photos"><i class="bi bi-images"></i>Photos</button>' +
           '<button type="button" class="qbtn" data-act="testdrive"><i class="bi bi-calendar-check"></i>Test Drive</button>' +
@@ -303,6 +306,6 @@
   /* ---------- boot ---------- */
   readURL();
   renderFilters();
-  $("[data-total-count]").textContent = DATA.length;
+  var totalEl = $("[data-total-count]"); if (totalEl) totalEl.textContent = DATA.length;
   apply();
 })();
