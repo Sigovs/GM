@@ -12,11 +12,13 @@
 .nav.nav--solid .btn--ghost-light { color: var(--ink); border-color: var(--line); }
 .nav.nav--solid .btn--ghost-light:hover { background: var(--surface-2); }
 .nav.nav--solid .btn--ghost-light .btn__ic { background: rgba(16,18,24,.07); }
-.nav.nav--solid .brand__img { filter: none; height: clamp(40px, 4.4vw, 48px); }
+.nav.nav--solid .brand__img { filter: none !important; height: clamp(40px, 4.4vw, 48px); }
 .nav.nav--solid .nav__toggle span { background: var(--ink); }
 
 /* push page content below the fixed nav */
 .srp-main { padding-top: 80px; }
+/* full-screen listing — break out of the 1320px container cap */
+.srp-main .container { max-width: none; }
 
 /* ---------- page header strip ---------- */
 .srp-head { background: var(--surface-2); border-bottom: 1px solid var(--line); }
@@ -83,8 +85,10 @@
 .chip button:hover { background: rgba(255,255,255,.6); }
 
 /* grid */
-.srp__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.srp__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 1.6vw, 1.6rem); }
 .srp__grid .v-card { flex: initial; }
+@media (max-width: 1240px) { .srp__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { .srp__grid { grid-template-columns: 1fr; } }
 
 /* per-card CTA row (Finance + View Details) */
 .v-card__ctas { display: flex; align-items: center; gap: .5rem; margin-top: .9rem; }
