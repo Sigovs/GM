@@ -10,7 +10,7 @@
 
   /* ---------- inventory data (single source of truth) ---------- */
   var IMG = "assets/img/vans/";
-  var INVENTORY = [
+  var INVENTORY = window.GM_INVENTORY || [
     { id: "s3500xd24", year: 2024, make: "Mercedes-Benz", model: "Sprinter 3500XD", trim: "High Roof 4-Cyl Diesel HO", price: 62900,  mileage: 12980,  drivetrain: "RWD",    transmission: "7G-TRONIC",    body: "High Roof Cargo",   color: "Arctic White",  image: IMG + "van-12.jpg", featured: true },
     { id: "s4500_22",  year: 2022, make: "Mercedes-Benz", model: "Sprinter 4500",   trim: "High Roof V6",                price: 54900,  mileage: 41300,  drivetrain: "RWD",    transmission: "7G-TRONIC",    body: "Extended Cargo",    color: "Arctic White",  image: IMG + "van-07.jpg" },
     { id: "s2500d_23", year: 2023, make: "Mercedes-Benz", model: "Sprinter 2500",   trim: "High Roof 4-Cyl Diesel",      price: 48500,  mileage: 28770,  drivetrain: "RWD",    transmission: "7G-TRONIC",    body: "Crew Van",          color: "Arctic White",  image: IMG + "van-03.jpg" },
@@ -261,7 +261,7 @@
   /* ---------- featured inventory carousel ---------- */
   function cardHTML(v) {
     return '' +
-      '<article class="v-card">' +
+      '<article class="v-card" data-id="' + v.id + '">' +
         '<div class="v-card__media">' +
           '<img src="' + v.image + '" alt="' + v.year + " " + v.make + " " + v.model + '" loading="lazy" />' +
           '<span class="v-card__badge">' + v.body + '</span>' +
@@ -280,7 +280,7 @@
           '</div>' +
           '<div class="v-card__foot">' +
             '<span class="v-card__price">' + usd(v.price) + '</span>' +
-            '<a href="#" class="v-card__cta">View Details <i class="bi bi-arrow-right arrow"></i></a>' +
+            '<a href="vehicle.html?id=' + v.id + '" class="v-card__cta">View Details <i class="bi bi-arrow-right arrow"></i></a>' +
           '</div>' +
         '</div>' +
       '</article>';
@@ -370,6 +370,11 @@
     viewport.addEventListener("click", function (e) {
       if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
     }, true);
+    // click a card (not a drag) → open its VDP
+    viewport.addEventListener("click", function (e) {
+      var cardEl = e.target.closest(".v-card");
+      if (cardEl && cardEl.getAttribute("data-id")) location.href = "vehicle.html?id=" + cardEl.getAttribute("data-id");
+    });
 
     var rt;
     window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
