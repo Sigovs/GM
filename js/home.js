@@ -345,14 +345,17 @@
       if (e.button != null && e.button !== 0) return;
       dragging = true; moved = false;
       startX = e.clientX; startTx = -index * step(); curTx = startTx;
-      track.style.transition = "none";
-      viewport.classList.add("is-dragging");
-      try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
     });
     viewport.addEventListener("pointermove", function (e) {
       if (!dragging) return;
       var dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
+      if (!moved) {
+        if (Math.abs(dx) <= 4) return;          // not a drag yet — leave clicks alone
+        moved = true;
+        track.style.transition = "none";
+        viewport.classList.add("is-dragging");
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}   // capture only once dragging
+      }
       curTx = clampTx(startTx + dx);
       track.style.transform = "translateX(" + curTx + "px)";
     });
@@ -361,8 +364,7 @@
       dragging = false;
       track.style.transition = "";
       viewport.classList.remove("is-dragging");
-      index = Math.max(0, Math.min(maxIndex, Math.round(-curTx / step())));
-      render();
+      if (moved) { index = Math.max(0, Math.min(maxIndex, Math.round(-curTx / step()))); render(); }
     }
     viewport.addEventListener("pointerup", endDrag);
     viewport.addEventListener("pointercancel", endDrag);
