@@ -1,0 +1,62 @@
+/* ============================================================
+   CARD CTA VARIANT (v-card--v2) — the four quick actions moved
+   into the card body as CTAs, with a full-width "View Details"
+   button below them.
+   Shared by inventory_2.html and index2_2.html so the original
+   pages stay untouched.
+   ============================================================ */
+
+/* the four quick actions as a 2×2 CTA grid inside the card body */
+.v-card--v2 .v-card__cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  margin-top: 1.1rem;
+}
+.v-card--v2 .qcta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .62rem .5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+.v-card--v2 .qcta .bi { font-size: .95rem; color: var(--accent-dark); transition: color .2s; }
+.v-card--v2 .qcta:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+/* full-width "View Details" button below the CTA grid */
+.v-card--v2 .v-card__details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  margin-top: .7rem;
+  padding: .72rem 1.05rem;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  font-size: .9rem;
+  transition: background-color .25s, transform .18s var(--ease);
+}
+.v-card--v2 .v-card__details:hover { background: #000; transform: translateY(-1px); }
+.v-card--v2 .v-card__details .arrow { transition: transform .3s var(--ease); }
+.v-card--v2:hover .v-card__details .arrow { transform: translateX(3px); }
+
+/* single column on the narrowest screens */
+@media (max-width: 400px) {
+  .v-card--v2 .v-card__cta-grid { grid-template-columns: 1fr; }
+}

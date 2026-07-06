@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory — GM Motors NY · Pre-Owned Sprinter, Transit &amp; ProMaster Vans</title>
+  <meta name="description" content="Browse GM Motors NY inventory — quality pre-owned Mercedes-Benz Sprinter, Ford Transit, and Freightliner vans. Filter by make, body, price and more. Financing, trade-in, and nationwide delivery." />
+
+  <!-- branded favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A6CE0'/%3E%3Ctext x='32' y='43' font-family='Sora,Arial,sans-serif' font-size='27' font-weight='800' letter-spacing='-1.5' fill='%23ffffff' text-anchor='middle'%3EGM%3C/text%3E%3C/svg%3E" />
+
+  <script>document.documentElement.className += " js";</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/home-blue.css" rel="stylesheet" />
+  <link href="css/srp.css" rel="stylesheet" />
+  <link href="css/card-cta.css" rel="stylesheet" />
+  <link href="css/topsearch.css" rel="stylesheet" />
+</head>
+<body id="top">
+
+  <!-- ============================ NAVBAR ============================ -->
+  <header class="nav nav--solid">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="brand" href="index2_2.html" aria-label="GM Motors NY — home">
+          <img class="brand__img" src="assets/img/logo-blue.svg" alt="GM Motors NY" width="171" height="101" />
+        </a>
+
+        <nav class="nav__links" aria-label="Primary">
+          <a class="nav__link is-active" href="inventory_2.html" aria-current="page">Inventory</a>
+          <a class="nav__link" href="index2_2.html#trade">Trade / Sell</a>
+          <a class="nav__link" href="index2_2.html#about">About</a>
+          <a class="nav__link" href="index2_2.html#contact">Contact</a>
+        </nav>
+
+        <div class="nav__actions">
+          <a href="index2_2.html#financing" class="btn btn--ghost-light">Financing</a>
+          <a href="tel:+15167080999" class="btn btn--accent btn--call"><span class="btn__ic btn__ic--lead"><i class="bi bi-telephone-fill"></i></span> (516) 708-0999</a>
+        </div>
+
+        <button class="nav__toggle" type="button" data-nav-toggle aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- mobile drawer -->
+  <div class="drawer" id="drawer">
+    <a class="drawer__link" href="inventory_2.html">Inventory</a>
+    <a class="drawer__link" href="index2_2.html#trade">Trade / Sell</a>
+    <a class="drawer__link" href="index2_2.html#about">About</a>
+    <a class="drawer__link" href="index2_2.html#contact">Contact</a>
+    <div class="drawer__actions">
+      <a href="index2_2.html#financing" class="btn btn--outline btn--block btn--lg">Financing</a>
+      <a href="tel:+15167080999" class="btn btn--accent btn--block btn--lg">Call (516) 708-0999</a>
+    </div>
+  </div>
+
+  <main class="srp-main">
+    <!-- ---------- page header ---------- -->
+    <div class="srp-head">
+      <div class="container">
+        <div class="srp-head__inner">
+          <div>
+            <p class="eyebrow">Now available</p>
+            <h1>Inventory</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- listing ---------- -->
+    <div class="container">
+      <div class="srp srp--full">
+
+        <!-- results (full width — no side menu) -->
+        <section class="srp__results" aria-label="Vehicles">
+
+          <!-- ---------- keyword search bar ---------- -->
+          <div class="kwbar">
+            <i class="bi bi-search"></i>
+            <input type="search" class="kwbar__input" data-search placeholder="Search inventory — make, model, trim or keyword…" aria-label="Search by keyword" />
+          </div>
+
+          <!-- ---------- filter bar (Year · Make · Model · Price · Mileage) ---------- -->
+          <div class="filterbar" data-filterbar>
+            <div class="filterbar__row" data-ts-fields><!-- fields injected by JS --></div>
+            <div class="filterbar__adv" data-adv-panel>
+              <div class="filterbar__adv-inner" data-adv-fields><!-- advanced filters injected by JS --></div>
+            </div>
+          </div>
+
+          <div class="srp__toolbar">
+            <p class="srp__count"><span data-result-count>—</span> vehicles</p>
+            <div class="srp__toolbar-right">
+              <label class="srp__sort">Sort
+                <select data-sort aria-label="Sort vehicles">
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="year-desc">Year: Newest</option>
+                  <option value="mileage-asc">Mileage: Lowest</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="srp__active" data-chips></div>
+
+          <div class="srp__grid" data-grid></div>
+
+          <div class="srp__empty" data-empty>
+            <span class="ic"><i class="bi bi-binoculars"></i></span>
+            <h3>No vans match those filters</h3>
+            <p>Try widening your price or mileage range, or clear a filter.</p>
+            <button type="button" class="btn btn--accent" data-clear-2>Clear all filters</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================ LEAD MODAL ============================ -->
+  <div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Close"><i class="bi bi-x-lg"></i></button>
+
+      <form data-modal-form>
+        <p class="modal__eyebrow" data-modal-eyebrow>Request</p>
+        <h3 class="modal__title" id="modalTitle" data-modal-title>Get in touch</h3>
+        <div class="modal__veh" data-modal-veh></div>
+
+        <div class="modal__grid">
+          <div class="field"><label>Full name</label><input name="name" required placeholder="Jordan Alvarez" /></div>
+          <div class="field"><label>Phone</label><input name="phone" type="tel" required placeholder="(516) 555-0142" /></div>
+          <div class="field field--full"><label>Email</label><input name="email" type="email" required placeholder="you@company.com" /></div>
+          <div class="field field--full"><label>Message <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label><input name="message" placeholder="Best time to reach you, questions…" /></div>
+        </div>
+
+        <button type="submit" class="btn btn--accent btn--lg btn--block" style="margin-top:1.15rem">Send request <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></button>
+        <p class="lead__note" style="margin-top:.8rem;text-align:center;font-size:.8rem;color:var(--ink-faint)">No spam. We reply fast during business hours.</p>
+      </form>
+
+      <div class="modal__success" data-modal-success>
+        <span class="ic"><i class="bi bi-check-lg"></i></span>
+        <h3 class="modal__title">Request sent</h3>
+        <p style="color:var(--ink-soft);margin-top:.4rem">Thanks — a GM Motors specialist will reach out shortly.</p>
+        <button type="button" class="btn btn--outline" data-modal-close style="margin-top:1.3rem">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand footer__brandmark" href="index2_2.html" aria-label="GM Motors NY — home">
+            <img class="brand__img" src="assets/img/logo-blue.svg" alt="GM Motors NY" width="171" height="101" />
+          </a>
+          <p>Quality pre-owned Sprinter, Transit &amp; ProMaster vans — online buying and nationwide delivery from Baldwin, NY.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <nav class="footer__col" aria-label="Shop">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="inventory_2.html">Inventory</a></li>
+            <li><a href="index2_2.html#financing">Financing</a></li>
+            <li><a href="index2_2.html#trade">Trade / Sell</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer__col" aria-label="Company">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index2_2.html#about">About</a></li>
+            <li><a href="index2_2.html#reviews">Reviews</a></li>
+            <li><a href="index2_2.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__contact" id="contact">
+          <h4>Visit / Contact</h4>
+          <p>590 Sunrise Hwy<br />Baldwin, NY 11510</p>
+          <p><a href="tel:+15167080999">(516) 708-0999</a><br /><a href="mailto:gmmotorsny@gmail.com">gmmotorsny@gmail.com</a></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> GM Motors NY. All rights reserved.</span>
+        <span class="footer__powered">Powered by <strong>All Auto Network</strong></span>
+        <a class="backtop" href="#top">Back to top <span class="ic"><i class="bi bi-arrow-up"></i></span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/inventory-data.js"></script>
+  <script src="js/home-2.js"></script>
+  <script src="js/inventory-2.js"></script>
+</body>
+</html>

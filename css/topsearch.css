@@ -1,0 +1,174 @@
+/* ============================================================
+   TOP SEARCH — modeled on the All Auto Network SRP reference.
+   A full-width keyword bar, then a horizontal filter bar with
+   Year · Make · Model · Price · Mileage in a single row.
+   Loaded only by inventory_2.html. No sidebar.
+   ============================================================ */
+
+/* full-bleed page: card grid runs corner-to-corner like the home page… */
+.srp-main .container { max-width: none; }
+.srp--full { grid-template-columns: 1fr; }
+
+/* …but the search + controls stay aligned to the header width (logo → phone) */
+.kwbar,
+.filterbar,
+.srp__toolbar,
+.srp__active { max-width: var(--container); margin-inline: auto; }
+
+/* ---- keyword search bar (separate, full width) ---- */
+.kwbar { position: relative; margin-bottom: 1rem; }
+.kwbar .bi {
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  color: var(--ink-faint); font-size: 1.05rem; pointer-events: none;
+}
+.kwbar__input {
+  width: 100%; height: 52px;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  padding: 0 1rem 0 2.9rem;
+  font-size: .95rem; font-family: inherit; color: var(--ink);
+  background: var(--surface);
+  transition: border-color .2s, box-shadow .2s;
+}
+.kwbar__input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+
+/* ---- filter bar ---- */
+.filterbar {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  box-shadow: 0 1px 2px rgba(16,18,24,.05);
+  margin-bottom: 1.5rem;
+}
+.filterbar__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.4rem;
+  padding: 1.1rem 1.2rem;
+}
+
+.fb-field { flex: 1 1 0; min-width: 130px; display: flex; flex-direction: column; }
+.fb-field--range { min-width: 168px; }
+.fb-field > label,
+.fb-field__head label {
+  font-size: .68rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--ink-soft);
+  margin-bottom: .5rem;
+}
+.fb-field__head { display: flex; align-items: center; justify-content: space-between; }
+.fb-field__val {
+  font-size: .78rem; font-weight: 600; color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* selects */
+.fb-ctrl {
+  width: 100%; height: 44px;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  padding: 0 1.9rem 0 .8rem;
+  font-size: .9rem; font-family: inherit; color: var(--ink);
+  background: var(--surface);
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236A7680'%3E%3Cpath d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .7rem center;
+  transition: border-color .2s, box-shadow .2s;
+}
+.fb-ctrl:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+
+/* ---- dual-range slider (Year / Price / Mileage) ---- */
+.range { position: relative; height: 28px; }
+.range__track, .range__fill {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  height: 4px; border-radius: var(--r-pill);
+}
+.range__track { left: 0; right: 0; background: var(--surface-3); }
+.range__fill { background: var(--accent); }
+.range input[type="range"] {
+  position: absolute; left: 0; top: 0; width: 100%; height: 28px; margin: 0;
+  background: none; pointer-events: none; -webkit-appearance: none; appearance: none;
+}
+.range input[type="range"]::-webkit-slider-runnable-track { background: none; height: 28px; }
+.range input[type="range"]::-moz-range-track { background: none; height: 28px; }
+.range input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; pointer-events: auto;
+  height: 18px; width: 18px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(9,13,17,.22); cursor: pointer; margin-top: 5px;
+  transition: transform .15s var(--ease);
+}
+.range input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.12); }
+.range input[type="range"]::-moz-range-thumb {
+  pointer-events: auto; height: 16px; width: 16px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--accent);
+  box-shadow: 0 1px 3px rgba(9,13,17,.22); cursor: pointer;
+}
+.range input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px var(--accent-soft); }
+
+/* clear-all — text button pinned to the end of the row */
+.fb-clear {
+  flex: 0 0 auto; align-self: flex-end;
+  height: 44px; padding: 0 1rem;
+  border: 1px solid transparent; border-radius: var(--r-sm);
+  background: transparent; color: var(--accent-dark);
+  font-weight: 600; font-size: .88rem; cursor: pointer;
+  transition: background-color .2s, color .2s;
+}
+.fb-clear:hover:not(:disabled) { background: var(--accent-soft); }
+.fb-clear:disabled { color: var(--ink-faint); cursor: default; }
+
+/* ---- "All filters" toggle button ---- */
+.fb-adv-toggle {
+  flex: 0 0 auto; align-self: flex-end;
+  height: 44px; display: inline-flex; align-items: center; gap: .5rem;
+  padding: 0 1rem;
+  border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--surface); color: var(--ink);
+  font-weight: 600; font-size: .88rem; cursor: pointer;
+  transition: border-color .2s, background-color .2s;
+}
+.fb-adv-toggle:hover { border-color: var(--accent); background: var(--accent-soft); }
+.fb-adv-caret { font-size: .8rem; color: var(--ink-faint); transition: transform .35s var(--ease); }
+.filterbar.is-adv-open .fb-adv-caret { transform: rotate(180deg); }
+.fb-adv-count {
+  display: none; min-width: 18px; height: 18px; padding: 0 5px;
+  border-radius: 9px; background: var(--accent); color: #fff;
+  font-size: .7rem; font-weight: 700; align-items: center; justify-content: center;
+}
+.fb-adv-count.is-shown { display: inline-flex; }
+
+/* ---- advanced accordion panel (smooth open) ---- */
+.filterbar__adv { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
+.filterbar.is-adv-open .filterbar__adv { grid-template-rows: 1fr; }
+.filterbar__adv-inner { overflow: hidden; background: var(--surface-2); }
+
+.adv-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem 1.2rem; padding: 1.1rem 1.2rem;
+  border-top: 1px solid var(--line);
+}
+.adv-groups { display: flex; flex-wrap: wrap; gap: 1.3rem 2.4rem; padding: 0 1.2rem 1.2rem; }
+.adv-block__label {
+  font-size: .68rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: .6rem;
+}
+.adv-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.adv-chip { cursor: pointer; }
+.adv-chip input { position: absolute; opacity: 0; pointer-events: none; }
+.adv-chip span {
+  display: inline-flex; align-items: center; padding: .42rem .9rem;
+  border: 1px solid var(--line); border-radius: var(--r-pill);
+  font-size: .82rem; color: var(--ink-soft); background: var(--surface);
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+.adv-chip:hover span { border-color: var(--accent); }
+.adv-chip input:checked + span { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-dark); font-weight: 600; }
+.adv-chip input:focus-visible + span { box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* ---- inventory grid: 3 across, matching the home-page cards ---- */
+.srp--full .srp__grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .srp--full .srp__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .srp--full .srp__grid { grid-template-columns: 1fr; } }
+
+/* ---- centered page header ("Now available" / "Inventory") ---- */
+.srp-head__inner { justify-content: center; text-align: center; }

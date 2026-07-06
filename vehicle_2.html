@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-doc-title>Vehicle — GM Motors NY</title>
+  <meta name="description" content="Vehicle detail — GM Motors NY pre-owned Sprinter, Transit and cargo vans. Financing, trade-in, and nationwide delivery." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A6CE0'/%3E%3Ctext x='32' y='43' font-family='Sora,Arial,sans-serif' font-size='27' font-weight='800' letter-spacing='-1.5' fill='%23ffffff' text-anchor='middle'%3EGM%3C/text%3E%3C/svg%3E" />
+
+  <script>document.documentElement.className += " js";</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link href="css/home-blue.css" rel="stylesheet" />
+  <link href="css/srp.css" rel="stylesheet" />
+  <link href="css/vdp.css" rel="stylesheet" />
+</head>
+<body id="top">
+
+  <!-- ============================ NAVBAR ============================ -->
+  <header class="nav nav--solid">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="brand" href="index2_2.html" aria-label="GM Motors NY — home">
+          <img class="brand__img" src="assets/img/logo-blue.svg" alt="GM Motors NY" width="171" height="101" />
+        </a>
+        <nav class="nav__links" aria-label="Primary">
+          <a class="nav__link is-active" href="inventory_2.html">Inventory</a>
+          <a class="nav__link" href="index2_2.html#trade">Trade / Sell</a>
+          <a class="nav__link" href="index2_2.html#about">About</a>
+          <a class="nav__link" href="index2_2.html#contact">Contact</a>
+        </nav>
+        <div class="nav__actions">
+          <a href="index2_2.html#financing" class="btn btn--ghost-light">Financing</a>
+          <a href="tel:+15167080999" class="btn btn--accent btn--call"><span class="btn__ic btn__ic--lead"><i class="bi bi-telephone-fill"></i></span> (516) 708-0999</a>
+        </div>
+        <button class="nav__toggle" type="button" data-nav-toggle aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <a class="drawer__link" href="inventory_2.html">Inventory</a>
+    <a class="drawer__link" href="index2_2.html#trade">Trade / Sell</a>
+    <a class="drawer__link" href="index2_2.html#about">About</a>
+    <a class="drawer__link" href="index2_2.html#contact">Contact</a>
+    <div class="drawer__actions">
+      <a href="index2_2.html#financing" class="btn btn--outline btn--block btn--lg">Financing</a>
+      <a href="tel:+15167080999" class="btn btn--accent btn--block btn--lg">Call (516) 708-0999</a>
+    </div>
+  </div>
+
+  <main class="vdp-main">
+    <div class="container">
+
+      <!-- breadcrumb -->
+      <nav class="vdp-crumb" aria-label="Breadcrumb">
+        <a href="index2_2.html">Home</a><span class="sep">/</span>
+        <a href="inventory_2.html">Inventory</a><span class="sep">/</span>
+        <span class="current" data-crumb>Vehicle</span>
+      </nav>
+
+      <!-- above the fold -->
+      <div class="vdp">
+        <div class="vdp__left">
+        <!-- gallery -->
+        <div class="vdp__gallery" data-gallery>
+          <div class="vdp__main" data-gallery-main>
+            <img src="" alt="" data-main-img />
+            <button class="vdp__fs" type="button" data-fullscreen aria-label="View full screen"><i class="bi bi-arrows-fullscreen"></i></button>
+            <div class="vdp__arrows"><button class="vdp__arrow" data-gallery-prev aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button><button class="vdp__arrow" data-gallery-next aria-label="Next photo"><i class="bi bi-chevron-right"></i></button></div>
+            <button class="vdp__viewall" type="button" data-viewall><i class="bi bi-images"></i> <span data-viewall-count>View all photos</span></button>
+            <span class="vdp__counter" data-gallery-counter>1 / 1</span>
+          </div>
+        </div>
+
+        <div class="vdp__overview">
+          <h2 class="vdp__overview-title">About this van</h2>
+          <p class="vdp__lead" data-desc></p>
+          <div class="vdp-highlights" data-highlights></div>
+        </div>
+        </div><!-- /.vdp__left -->
+
+        <!-- sticky panel -->
+        <aside class="vdp__panel">
+          <div class="vdp__card">
+            <p class="vdp__eyebrow" data-status-eyebrow>Now available</p>
+            <h1 class="vdp__title" data-title>—</h1>
+            <p class="vdp__trim" data-trim>—</p>
+
+            <div class="vdp__price-row">
+              <span class="vdp__price" data-price>—</span>
+              <span class="vdp__price-note">+ tax &amp; DMV · financing available</span>
+            </div>
+
+            <div class="vdp__quickspecs" data-quickspecs></div>
+
+            <div class="vdp__actions">
+              <button type="button" class="btn btn--accent btn--wide" data-act="todayprice">Get Today's Price <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></button>
+              <button type="button" class="btn btn--outline btn--sm" data-act="testdrive"><i class="bi bi-calendar-check"></i> Test Drive</button>
+              <button type="button" class="btn btn--outline btn--sm" data-act="finance"><i class="bi bi-cash-coin"></i> Financing</button>
+              <button type="button" class="btn btn--outline btn--sm" data-act="trade"><i class="bi bi-arrow-left-right"></i> Value Trade</button>
+              <button type="button" class="btn btn--outline btn--sm" data-act="send"><i class="bi bi-phone"></i> Send to Phone</button>
+            </div>
+
+            <form class="vdp__form" data-vdp-form>
+              <div class="field"><label>Full name</label><input name="name" required placeholder="Jordan Alvarez" /></div>
+              <div class="field"><label>Phone</label><input name="phone" type="tel" required placeholder="(516) 555-0142" /></div>
+              <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@company.com" /></div>
+              <button type="submit" class="btn btn--ink btn--block btn--lg" style="margin-top:1rem">Get Today's Price</button>
+              <p class="vdp__assure"><i class="bi bi-shield-check"></i> Inspected &amp; history-checked · Delivered nationwide</p>
+            </form>
+            <div class="vdp__form-success" data-vdp-success>
+              <span class="ic"><i class="bi bi-check-lg"></i></span>
+              <p style="font-weight:600">Request sent — we'll be in touch shortly.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- specifications -->
+      <section class="vdp-section">
+        <h2 class="vdp-section__title">Specifications</h2>
+        <div class="vdp-specs" data-specs></div>
+      </section>
+
+      <!-- history & condition -->
+      <section class="vdp-section">
+        <h2 class="vdp-section__title">History &amp; condition</h2>
+        <div class="vdp-history">
+          <div class="vdp-hist"><span class="ic"><i class="bi bi-clipboard2-check"></i></span><span>Multi-point inspected<small>Mechanically checked before listing</small></span></div>
+          <div class="vdp-hist"><span class="ic"><i class="bi bi-file-earmark-text"></i></span><span>Clean title &amp; history<small>Verified — no surprises</small></span></div>
+          <div class="vdp-hist"><span class="ic"><i class="bi bi-droplet"></i></span><span>Serviced &amp; detailed<small>Road-ready on delivery</small></span></div>
+          <div class="vdp-hist"><span class="ic"><i class="bi bi-truck"></i></span><span>Nationwide delivery<small>Insured, door-to-door to 50 states</small></span></div>
+        </div>
+      </section>
+
+      <!-- all photos -->
+      <section class="vdp-section" id="photos">
+        <h2 class="vdp-section__title">Photos</h2>
+        <div class="vdp-photos" data-photo-grid></div>
+      </section>
+
+      <!-- financing / trade band -->
+      <section class="vdp-section">
+        <div class="vdp-finband">
+          <div>
+            <h3>Finance it, or trade in your current van.</h3>
+            <p>Competitive financing and a straight trade value — sorted before you ever leave the house.</p>
+          </div>
+          <div class="vdp-finband__cta">
+            <button type="button" class="btn btn--accent btn--lg" data-act="finance">Apply for Financing</button>
+            <button type="button" class="btn btn--ghost-light btn--lg" data-act="trade">Value Your Trade</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- related -->
+      <section class="vdp-section vdp-related">
+        <h2 class="vdp-section__title">Keep shopping</h2>
+        <div class="vdp-related__grid" data-related></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ============================ LEAD MODAL ============================ -->
+  <div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" data-modal-close aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      <form data-modal-form>
+        <p class="modal__eyebrow" data-modal-eyebrow>Request</p>
+        <h3 class="modal__title" id="modalTitle" data-modal-title>Get in touch</h3>
+        <div class="modal__veh" data-modal-veh></div>
+        <div class="modal__grid">
+          <div class="field"><label>Full name</label><input name="name" required placeholder="Jordan Alvarez" /></div>
+          <div class="field"><label>Phone</label><input name="phone" type="tel" required placeholder="(516) 555-0142" /></div>
+          <div class="field field--full"><label>Email</label><input name="email" type="email" required placeholder="you@company.com" /></div>
+          <div class="field field--full"><label>Message <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label><input name="message" placeholder="Best time to reach you, questions…" /></div>
+        </div>
+        <button type="submit" class="btn btn--accent btn--lg btn--block" style="margin-top:1.15rem">Send request <span class="btn__ic"><i class="bi bi-arrow-right"></i></span></button>
+        <p class="lead__note" style="margin-top:.8rem;text-align:center;font-size:.8rem;color:var(--ink-faint)">No spam. We reply fast during business hours.</p>
+      </form>
+      <div class="modal__success" data-modal-success>
+        <span class="ic"><i class="bi bi-check-lg"></i></span>
+        <h3 class="modal__title">Request sent</h3>
+        <p style="color:var(--ink-soft);margin-top:.4rem">Thanks — a GM Motors specialist will reach out shortly.</p>
+        <button type="button" class="btn btn--outline" data-modal-close style="margin-top:1.3rem">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a class="brand footer__brandmark" href="index2_2.html" aria-label="GM Motors NY — home">
+            <img class="brand__img" src="assets/img/logo-blue.svg" alt="GM Motors NY" width="171" height="101" />
+          </a>
+          <p>Quality pre-owned Sprinter, Transit &amp; ProMaster vans — online buying and nationwide delivery from Baldwin, NY.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <nav class="footer__col" aria-label="Shop">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="inventory_2.html">Inventory</a></li>
+            <li><a href="index2_2.html#financing">Financing</a></li>
+            <li><a href="index2_2.html#trade">Trade / Sell</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__col" aria-label="Company">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index2_2.html#about">About</a></li>
+            <li><a href="index2_2.html#reviews">Reviews</a></li>
+            <li><a href="index2_2.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="footer__contact" id="contact">
+          <h4>Visit / Contact</h4>
+          <p>590 Sunrise Hwy<br />Baldwin, NY 11510</p>
+          <p><a href="tel:+15167080999">(516) 708-0999</a><br /><a href="mailto:gmmotorsny@gmail.com">gmmotorsny@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> GM Motors NY. All rights reserved.</span>
+        <span class="footer__powered">Powered by <strong>All Auto Network</strong></span>
+        <a class="backtop" href="#top">Back to top <span class="ic"><i class="bi bi-arrow-up"></i></span></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/inventory-data.js"></script>
+  <script src="js/home-2.js"></script>
+  <script src="js/vehicle-2.js"></script>
+</body>
+</html>
