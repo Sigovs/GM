@@ -72,6 +72,9 @@
         <div class="vdp__gallery" data-gallery>
           <div class="vdp__main" data-gallery-main>
             <img src="" alt="" data-main-img />
+            <video class="vdp__video" data-main-video playsinline controls muted preload="none"></video>
+            <button class="vdp__play" type="button" data-play aria-label="Play walkaround video"><i class="bi bi-play-fill"></i></button>
+            <button class="vdp__mute" type="button" data-mute aria-label="Turn sound on"><i class="bi bi-volume-mute-fill"></i><span class="vdp__mute-txt">Tap for sound</span></button>
             <button class="vdp__fs" type="button" data-fullscreen aria-label="View full screen"><i class="bi bi-arrows-fullscreen"></i></button>
             <div class="vdp__arrows"><button class="vdp__arrow" data-gallery-prev aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button><button class="vdp__arrow" data-gallery-next aria-label="Next photo"><i class="bi bi-chevron-right"></i></button></div>
             <button class="vdp__viewall" type="button" data-viewall><i class="bi bi-images"></i> <span data-viewall-count>View all photos</span></button>
@@ -80,7 +83,7 @@
           <div class="vdp__thumbs" data-gallery-thumbs></div>
         </div>
 
-        <div class="vdp__overview">
+        <div class="vdp__overview" id="overview">
           <h2 class="vdp__overview-title">About this van</h2>
           <p class="vdp__lead" data-desc></p>
           <div class="vdp-highlights" data-highlights></div>
@@ -122,16 +125,44 @@
         </aside>
       </div>
 
-      <!-- specifications -->
-      <section class="vdp-section">
-        <h2 class="vdp-section__title">Specifications</h2>
-        <div class="vdp-specs" data-specs></div>
+      <!-- sticky section sub-nav -->
+      <nav class="vdp-subnav" data-subnav aria-label="Section navigation">
+        <div class="vdp-subnav__inner">
+          <span class="vdp-subnav__title" data-subnav-title>—</span>
+          <div class="vdp-subnav__links" data-subnav-links>
+            <a href="#overview" class="btn btn--ink btn--sm"><span class="btn__ic btn__ic--lead"><i class="bi bi-card-text"></i></span>Overview</a>
+            <a href="#specs" class="btn btn--ink btn--sm"><span class="btn__ic btn__ic--lead"><i class="bi bi-list-check"></i></span>Specs</a>
+            <a href="#video" class="btn btn--ink btn--sm" data-video-jump><span class="btn__ic btn__ic--lead"><i class="bi bi-play-circle-fill"></i></span>Video</a>
+            <a href="#history" class="btn btn--ink btn--sm"><span class="btn__ic btn__ic--lead"><i class="bi bi-clock-history"></i></span>History</a>
+            <a href="#financing" class="btn btn--ink btn--sm"><span class="btn__ic btn__ic--lead"><i class="bi bi-cash-coin"></i></span>Financing</a>
+          </div>
+          <div class="vdp-subnav__cta">
+            <span class="vdp-subnav__price" data-subnav-price>—</span>
+            <button type="button" class="btn btn--accent btn--sm" data-act="todayprice">Get Today's Price</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- 01 · specifications (grey band) -->
+      <section class="vdp-section vdp-band vdp-band--grey" id="specs">
+        <header class="vdp-shead vdp-reveal"><span class="vdp-shead__num">01</span><h2 class="vdp-shead__title">Specifications</h2></header>
+        <div class="vdp-specs vdp-reveal" data-specs></div>
       </section>
 
-      <!-- history & condition -->
-      <section class="vdp-section">
-        <h2 class="vdp-section__title">History &amp; condition</h2>
-        <div class="vdp-history">
+      <!-- 02 · video -->
+      <section class="vdp-section" id="video">
+        <header class="vdp-shead vdp-reveal"><span class="vdp-shead__num">02</span><h2 class="vdp-shead__title">Video</h2></header>
+        <div class="vdp-videobox vdp-reveal" data-videofeature>
+          <video class="vdp-videobox__vid" data-feature-video playsinline muted preload="none"></video>
+          <button class="vdp-videobox__play" type="button" data-feature-play aria-label="Play walkaround video"><i class="bi bi-play-fill"></i></button>
+          <button class="vdp-videobox__mute" type="button" data-feature-mute aria-label="Turn sound on"><i class="bi bi-volume-mute-fill"></i><span class="vdp-videobox__mute-txt">Tap for sound</span></button>
+        </div>
+      </section>
+
+      <!-- 03 · history & condition -->
+      <section class="vdp-section" id="history">
+        <header class="vdp-shead vdp-reveal"><span class="vdp-shead__num">03</span><h2 class="vdp-shead__title">History &amp; condition</h2></header>
+        <div class="vdp-history vdp-reveal">
           <div class="vdp-hist"><span class="ic"><i class="bi bi-clipboard2-check"></i></span><span>Multi-point inspected<small>Mechanically checked before listing</small></span></div>
           <div class="vdp-hist"><span class="ic"><i class="bi bi-file-earmark-text"></i></span><span>Clean title &amp; history<small>Verified — no surprises</small></span></div>
           <div class="vdp-hist"><span class="ic"><i class="bi bi-droplet"></i></span><span>Serviced &amp; detailed<small>Road-ready on delivery</small></span></div>
@@ -139,9 +170,10 @@
         </div>
       </section>
 
-      <!-- financing / trade band -->
-      <section class="vdp-section">
-        <div class="vdp-finband">
+      <!-- 03 · financing / trade -->
+      <section class="vdp-section" id="financing">
+        <header class="vdp-shead vdp-reveal"><span class="vdp-shead__num">04</span><h2 class="vdp-shead__title">Financing &amp; trade</h2></header>
+        <div class="vdp-finband vdp-reveal">
           <div>
             <h3>Finance it, or trade in your current van.</h3>
             <p>Competitive financing and a straight trade value — sorted before you ever leave the house.</p>
@@ -153,10 +185,10 @@
         </div>
       </section>
 
-      <!-- related -->
-      <section class="vdp-section vdp-related">
-        <h2 class="vdp-section__title">Keep shopping</h2>
-        <div class="vdp-related__grid" data-related></div>
+      <!-- keep shopping -->
+      <section class="vdp-section vdp-related" id="related">
+        <header class="vdp-shead vdp-reveal"><h2 class="vdp-shead__title">Keep shopping</h2></header>
+        <div class="vdp-related__grid vdp-reveal" data-related></div>
       </section>
 
     </div>

@@ -50,16 +50,34 @@
       " transmission. It's been multi-point inspected, serviced, and detailed — buy the whole thing online and we deliver it insured to your door, anywhere in the 50 states.";
   }
 
-  /* ---------- gallery ---------- */
-  function buildImages() {
-    if (V.images && V.images.length) return V.images;
-    // demo gallery: this van's own photo first, then other stock photos as extra angles
-    var others = DATA.map(function (v) { return v.image; }).filter(function (p) { return p !== V.image; });
-    return [V.image].concat(others).slice(0, 6);
+  /* ---------- gallery (media-aware: photos + optional walkaround video) ---------- */
+  function buildMedia() {
+    if (V.media && V.media.length) return V.media;
+    var imgs = (V.images && V.images.length)
+      ? V.images.slice()
+      : [V.image].concat(DATA.map(function (v) { return v.image; }).filter(function (p) { return p !== V.image; })).slice(0, 6);
+    var list = imgs.map(function (src) { return { type: "image", src: src }; });
+    if (V.video && V.video.src) {
+      // slot the video in as the 2nd item so the beauty shot still leads
+      list.splice(list.length > 1 ? 1 : list.length, 0, { type: "video", src: V.video.src, poster: V.video.poster || imgs[0] });
+    }
+    return list;
   }
-  var images = buildImages();
+  var media = buildMedia();
+  var imgCount = media.filter(function (m) { return m.type === "image"; }).length;
+  var vidCount = media.length - imgCount;
   var gi = 0;
+  var mainStage = $("[data-gallery-main]");
   var mainImg = $("[data-main-img]");
+  var mainVideo = $("[data-main-video]");
+  var playBtn = $("[data-play]");
+  var muteBtn = $("[data-mute]");
+  function setMuteUI(muted) {
+    if (!muteBtn) return;
+    muteBtn.classList.toggle("is-unmuted", !muted);
+    muteBtn.querySelector("i").className = muted ? "bi bi-volume-mute-fill" : "bi bi-volume-up-fill";
+    muteBtn.setAttribute("aria-label", muted ? "Turn sound on" : "Mute");
+  }
   var counter = $("[data-gallery-counter]");
   var gallery = $("[data-gallery]");
   if (V.status === "sold") {
@@ -75,7 +93,12 @@
     thumbsWrap.innerHTML =
       '<button type="button" class="vdp__thumbs-arrow" data-thumbs-prev aria-label="Scroll thumbnails left"><i class="bi bi-chevron-left"></i></button>' +
       '<div class="vdp__thumbs-vp" data-thumbs-vp>' +
-        images.map(function (src, k) { return '<button type="button" class="vdp__thumb" data-thumb="' + k + '"><img src="' + src + '" alt="' + TITLE + " — photo " + (k + 1) + '" loading="lazy" /></button>'; }).join("") +
+        media.map(function (m, k) {
+          var poster = m.type === "video" ? (m.poster || "") : m.src;
+          var badge = m.type === "video" ? '<span class="vdp__thumb-badge"><i class="bi bi-play-fill"></i></span>' : "";
+          var label = m.type === "video" ? "walkaround video" : "photo " + (k + 1);
+          return '<button type="button" class="vdp__thumb' + (m.type === "video" ? " vdp__thumb--video" : "") + '" data-thumb="' + k + '"><img src="' + poster + '" alt="' + TITLE + " — " + label + '" loading="lazy" />' + badge + "</button>";
+        }).join("") +
       "</div>" +
       '<button type="button" class="vdp__thumbs-arrow" data-thumbs-next aria-label="Scroll thumbnails right"><i class="bi bi-chevron-right"></i></button>';
     thumbsVp = $("[data-thumbs-vp]", thumbsWrap);
@@ -89,10 +112,32 @@
     updThumbArrows();
     window.addEventListener("resize", updThumbArrows);
   }
+  function stopMainVideo() {
+    if (!mainVideo) return;
+    mainVideo.pause();
+    mainVideo.removeAttribute("src"); mainVideo.load();
+    mainStage.classList.remove("is-playing");
+  }
+  function playMainVideo() {
+    var m = media[gi];
+    if (!m || m.type !== "video" || !mainVideo) return;
+    mainVideo.src = m.src;
+    mainVideo.muted = true; setMuteUI(true); // start muted; user can tap for sound
+    mainStage.classList.add("is-playing");
+    var p = mainVideo.play(); if (p && p.catch) p.catch(function () {});
+  }
   function showMain(i) {
-    gi = (i + images.length) % images.length;
-    mainImg.src = images[gi]; mainImg.alt = TITLE + " — photo " + (gi + 1);
-    counter.textContent = (gi + 1) + " / " + images.length;
+    gi = (i + media.length) % media.length;
+    var m = media[gi];
+    stopMainVideo();
+    if (m.type === "video") {
+      mainStage.classList.add("is-video");
+      mainImg.src = m.poster || ""; mainImg.alt = TITLE + " — walkaround video";
+    } else {
+      mainStage.classList.remove("is-video");
+      mainImg.src = m.src; mainImg.alt = TITLE + " — photo " + (gi + 1);
+    }
+    counter.textContent = (gi + 1) + " / " + media.length;
     if (thumbsVp) $$(".vdp__thumb", thumbsVp).forEach(function (t, k) {
       var on = k === gi; t.classList.toggle("is-active", on);
       if (on) {
@@ -101,24 +146,38 @@
       }
     });
   }
+  if (playBtn) playBtn.addEventListener("click", function (e) { e.stopPropagation(); playMainVideo(); });
+  if (muteBtn) muteBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (!mainVideo) return;
+    mainVideo.muted = !mainVideo.muted;
+    setMuteUI(mainVideo.muted);
+  });
   $("[data-gallery-prev]").addEventListener("click", function (e) { e.stopPropagation(); showMain(gi - 1); });
   $("[data-gallery-next]").addEventListener("click", function (e) { e.stopPropagation(); showMain(gi + 1); });
-  if (images.length < 2) $(".vdp__arrows").style.display = "none";
-  $("[data-viewall-count]").textContent = "View all " + images.length + " photos";
+  if (media.length < 2) $(".vdp__arrows").style.display = "none";
+  $("[data-viewall-count]").textContent = "View all " + imgCount + " photos" + (vidCount ? " + video" : "");
   showMain(0);
 
-  // lightbox (gallery-aware: prev/next, keyboard, counter)
+  // lightbox (media-aware: photos + video, prev/next, keyboard, counter)
   function openLightbox(start) {
+    stopMainVideo();
     var i = start;
     var lb = document.createElement("div"); lb.className = "lb";
-    var nav = images.length > 1
+    var nav = media.length > 1
       ? '<button class="lb__btn lb__prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button><button class="lb__btn lb__next" aria-label="Next"><i class="bi bi-chevron-right"></i></button><span class="lb__counter"></span>'
       : "";
-    lb.innerHTML = '<img class="lb__img" src="" alt="' + TITLE + '" /><button class="lb__btn lb__close" aria-label="Close"><i class="bi bi-x-lg"></i></button>' + nav;
+    lb.innerHTML = '<div class="lb__slot"></div><button class="lb__btn lb__close" aria-label="Close"><i class="bi bi-x-lg"></i></button>' + nav;
     document.body.appendChild(lb); document.body.classList.add("modal-open");
-    var imgEl = lb.querySelector(".lb__img"), cEl = lb.querySelector(".lb__counter");
-    function upd() { imgEl.src = images[i]; if (cEl) cEl.textContent = (i + 1) + " / " + images.length; }
-    function go(d) { i = (i + d + images.length) % images.length; upd(); }
+    var slot = lb.querySelector(".lb__slot"), cEl = lb.querySelector(".lb__counter");
+    function upd() {
+      var m = media[i];
+      slot.innerHTML = m.type === "video"
+        ? '<video class="lb__video" src="' + m.src + '" controls autoplay playsinline muted></video>'
+        : '<img class="lb__img" src="' + m.src + '" alt="' + TITLE + '" />';
+      if (cEl) cEl.textContent = (i + 1) + " / " + media.length;
+    }
+    function go(d) { i = (i + d + media.length) % media.length; upd(); }
     function close() { lb.remove(); document.body.classList.remove("modal-open"); document.removeEventListener("keydown", key); }
     function key(e) { if (e.key === "Escape") close(); else if (e.key === "ArrowLeft") go(-1); else if (e.key === "ArrowRight") go(1); }
     lb.addEventListener("click", function (e) {
@@ -131,10 +190,49 @@
   }
   $("[data-fullscreen]").addEventListener("click", function (e) { e.stopPropagation(); openLightbox(gi); });
   $("[data-gallery-main]").addEventListener("click", function (e) {
-    if (e.target.closest(".vdp__arrow") || e.target.closest(".vdp__viewall") || e.target.closest(".vdp__fs")) return;
+    if (e.target.closest(".vdp__arrow") || e.target.closest(".vdp__viewall") || e.target.closest(".vdp__fs") || e.target.closest(".vdp__play") || e.target.closest(".vdp__mute")) return;
+    if (mainStage.classList.contains("is-playing")) return;
+    if (media[gi] && media[gi].type === "video") { playMainVideo(); return; }
     openLightbox(gi);
   });
   $("[data-viewall]").addEventListener("click", function (e) { e.stopPropagation(); openLightbox(gi); });
+
+  /* ---------- dedicated Video section (under Specs) ---------- */
+  var vsec = document.getElementById("video");
+  if (vsec) {
+    var videoJump = $("[data-video-jump]");
+    if (V.video && V.video.src) {
+      var fvid = $("[data-feature-video]", vsec);
+      var fbox = $(".vdp-videobox", vsec);
+      var fplay = $("[data-feature-play]", vsec);
+      var fmute = $("[data-feature-mute]", vsec);
+      if (fvid) fvid.poster = V.video.poster || (media[0] && media[0].src) || "";
+      var setFMute = function (m) {
+        if (!fmute) return;
+        fmute.classList.toggle("is-unmuted", !m);
+        fmute.querySelector("i").className = m ? "bi bi-volume-mute-fill" : "bi bi-volume-up-fill";
+        fmute.setAttribute("aria-label", m ? "Turn sound on" : "Mute");
+      };
+      var playFeature = function () {
+        if (!fvid || fbox.classList.contains("is-playing")) return;
+        fvid.src = V.video.src;
+        fvid.muted = true; setFMute(true);        // start muted; tap for sound
+        fvid.setAttribute("controls", "");         // native controls only once playing
+        fbox.classList.add("is-playing");
+        var p = fvid.play(); if (p && p.catch) p.catch(function () {});
+      };
+      if (fplay) fplay.addEventListener("click", function (e) { e.stopPropagation(); playFeature(); });
+      if (fbox) fbox.addEventListener("click", function (e) {
+        if (e.target.closest("[data-feature-mute]") || e.target.closest("video")) return;
+        playFeature();
+      });
+      if (fmute) fmute.addEventListener("click", function (e) { e.stopPropagation(); fvid.muted = !fvid.muted; setFMute(fvid.muted); });
+    } else {
+      // no video for this vehicle — drop the section and the sub-nav button
+      vsec.style.display = "none";
+      if (videoJump) videoJump.style.display = "none";
+    }
+  }
 
   /* ---------- highlights ---------- */
   var HL = [];
@@ -214,4 +312,40 @@
     $("[data-vdp-form]").style.display = "none";
     $("[data-vdp-success]").classList.add("is-shown");
   });
+
+  /* ---------- sticky section sub-nav ---------- */
+  var subTitle = $("[data-subnav-title]"); if (subTitle) subTitle.textContent = TITLE;
+  var subPrice = $("[data-subnav-price]"); if (subPrice) subPrice.textContent = usd(V.price);
+
+  /* active-link spy: highlight the sub-nav link for the section in view */
+  var subLinks = $$("[data-subnav-links] a");
+  if (subLinks.length && "IntersectionObserver" in window) {
+    var linkFor = {};
+    subLinks.forEach(function (a) { linkFor[a.getAttribute("href").slice(1)] = a; });
+    var sections = subLinks
+      .map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); })
+      .filter(Boolean);
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          subLinks.forEach(function (a) { a.classList.remove("is-active"); });
+          var l = linkFor[en.target.id]; if (l) l.classList.add("is-active");
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* scroll reveal — sections rise in as they enter the viewport */
+  var reveals = $$(".vdp-reveal");
+  if (reveals.length && "IntersectionObserver" in window) {
+    var ro = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("is-in"); obs.unobserve(en.target); }
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+    reveals.forEach(function (el) { ro.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+  }
 })();
