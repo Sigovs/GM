@@ -41,6 +41,7 @@
 /* left-column overview (fills the space beside the sticky panel) */
 .vdp__overview { margin-top: clamp(1.6rem, 3vw, 2.2rem); }
 .vdp__overview-title { font-size: clamp(1.2rem, 2.4vw, 1.5rem); margin-bottom: .75rem; }
+.vdp__overview-num { font-family: var(--display); font-weight: 800; color: var(--accent); margin-right: .55rem; letter-spacing: .02em; }
 .vdp__lead { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.7; max-width: 64ch; margin-bottom: 1.6rem; }
 .vdp__overview .vdp-highlights { grid-template-columns: 1fr 1fr; }
 @media (max-width: 520px) { .vdp__overview .vdp-highlights { grid-template-columns: 1fr; } }
