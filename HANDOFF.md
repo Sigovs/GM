@@ -1,7 +1,13 @@
 # GM Motors NY — Designer Handoff
 
-**Live set:** `index3.html` · `inventory3.html` · `vehicle3.html` (the "#3" set).
-Everything below describes **#3 only**. Older sets (`index2_2`/`inventory_2`/`vehicle_2`, and the original teal `index`/`inventory`/`vehicle`) are kept **on purpose** so the client can compare with what he saw before — do not delete or restyle them.
+**Live set:** `index3.html` · `inventory3.html` · `vehicle3.html` (the "#3" set) — the only pages we ship.
+
+They keep the `3` suffix on purpose: the client's review link points at `index3.html`, so renaming would break it.
+
+Earlier sets (the original teal design, and the `_2` blue demo the client first reviewed) have been removed from the working tree. They're preserved at the **`legacy-sets`** git tag if anyone ever needs to compare:
+```sh
+git checkout legacy-sets -- index.html    # restore any old file
+```
 
 **Stack:** static HTML + hand-written CSS + vanilla JS. No build step, no framework, no Bootstrap on these pages (only Bootstrap Icons via CDN). Preview with `python3 -m http.server 8000` from the repo root.
 
@@ -11,7 +17,7 @@ Everything below describes **#3 only**. Older sets (`index2_2`/`inventory_2`/`ve
 
 ## 1. What the product actually is
 
-Pre-owned **van** dealership — Mercedes-Benz Sprinter, Ford Transit, Freightliner. **Not** exotic/sports cars. (The repo's `CLAUDE.md` still says "premium high-line" — it's stale. Trust this doc.)
+Pre-owned **van** dealership — Mercedes-Benz Sprinter, Ford Transit, Freightliner. **Not** exotic/sports cars.
 
 Buyer's first decision is always **Passenger vs Cargo**. That's why the SRP leads with it.
 
@@ -191,22 +197,19 @@ Breakpoints that matter:
 
 ---
 
-## 8. CSS files — and the scoping trap
+## 8. CSS files
 
 | File | Loaded by |
 |---|---|
-| `home-blue.css` | **everything** (all #3 pages **and** the old `_2` set) — tokens, nav, buttons, footer, grain |
-| `srp.css` | inventory3, vehicle3 (+ old sets) |
-| `topsearch.css` | inventory3 (+ inventory_2) — search bar, filter bar, hero band, bodypick |
-| `card-cta.css` | index3, inventory3 (+ old) |
-| `vdp.css` | vehicle3 (+ vehicle.html, vehicle_2.html) |
+| `home-blue.css` | **every page** — tokens (`:root`), nav, buttons, footer, film grain |
+| `srp.css` | inventory3, vehicle3 — listing, plus shared `nav--solid` / modal / `v-card` |
+| `topsearch.css` | inventory3 — search bar, filter bar, hero band, Passenger/Cargo picker |
+| `card-cta.css` | index3, inventory3 — vehicle-card CTAs |
+| `vdp.css` | vehicle3 |
 
-🚨 **These files are shared with the older versions.** Editing an *existing* rule changes the old pages too — which defeats the point of keeping them for comparison.
+These used to be shared with the old page sets, so a lot of the newer styling was deliberately scoped to #3-only hooks (`body.has-texture`, `.srp-main--hero`, `.srp-searchcard`, `.bodypick`, `.vdp-subnav`, `.vdp-band`, …). **That constraint is gone** now that the old sets are removed — the scoping is harmless, but you're free to edit rules directly and you no longer need to check other pages afterwards.
 
-**So: add new rules under #3-only hooks, don't modify shared ones.** The existing hooks:
-`body.has-texture` · `.srp-main--hero` · `.srp-hero` · `.srp-searchcard` · `.bodypick` · `.vdp-subnav` · `.vdp-shead` · `.vdp-band` · `.vdp-videobox` · `.brand__img--light` / `--color`
-
-After any CSS change, **open `inventory_2.html` and `vehicle.html` and confirm they still look the same.**
+Note `srp.css` is still loaded by the VDP (it carries the solid nav, the modal and the vehicle card, which the VDP reuses for "Keep shopping"). It is not SRP-only despite the name.
 
 ---
 
@@ -214,6 +217,6 @@ After any CSS change, **open `inventory_2.html` and `vehicle.html` and confirm t
 
 1. **Photos for the other 11 vans** — blocking. Everything else is polish.
 2. **Accent vs logo blue** — undecided (see §2).
-3. **Consolidation** — once the client signs off on #3, rename it to `index/inventory/vehicle` and archive the old sets. Not done yet, deliberately.
-4. `CLAUDE.md` still describes an exotic-car dealership. Stale — ignore it or rewrite it.
+3. **Consolidation** — pages keep the `3` suffix so the client's review link keeps working. Rename to `index/inventory/vehicle` only when he's done reviewing.
+4. ~~`CLAUDE.md` is stale~~ — rewritten, now accurate.
 5. Make/Model selects in the filter bar have no `aria-label` (Year/Price/Mileage do). Minor a11y gap.
