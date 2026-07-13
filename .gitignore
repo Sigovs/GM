@@ -5,3 +5,8 @@ node_modules/
 
 # Claude local session/config
 .claude/
+
+# Raw brand/asset drops from the client — only the web-ready files we
+# actually use are committed (see assets/img/logo-gm*.svg)
+new logo*/
+new logo*.zip
