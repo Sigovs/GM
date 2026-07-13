@@ -9,6 +9,8 @@ Earlier sets (the original teal design, and the `_2` blue demo the client first 
 git checkout legacy-sets -- index.html    # restore any old file
 ```
 
+**Design system:** open **`design.html`** in the browser. Colours, type, spacing, and every component — rendered with the **live site CSS**, not redrawn. It cannot drift from the real pages, because it *is* the real pages' CSS. Read this doc for the *why*; use `design.html` for the *what*.
+
 **Stack:** static HTML + hand-written CSS + vanilla JS. No build step, no framework, no Bootstrap on these pages (only Bootstrap Icons via CDN). Preview with `python3 -m http.server 8000` from the repo root.
 
 > ⚠️ **The dev server sends no cache headers.** After editing CSS/JS the browser will happily serve a stale copy and you'll think your change did nothing. Restart the server on a **new port** each time (8000 → 8001 → …), or hard-reload.

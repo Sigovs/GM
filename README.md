@@ -17,6 +17,9 @@ The dev server sends no cache headers — after editing CSS/JS, restart on a new
 port or hard-reload, otherwise you'll be looking at a stale copy.
 
 ## Docs
+- **`design.html`** — the design system. Open it in the browser: colours, type,
+  spacing, and every component rendered with the **live site CSS** (not
+  redrawn), so it can't drift from the real thing.
 - **[HANDOFF.md](HANDOFF.md)** — the spec: design tokens, components, the
   client-driven rules that must not be undone, mobile breakpoints, open questions.
 - [CLAUDE.md](CLAUDE.md) — short orientation for AI assistants.
