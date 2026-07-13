@@ -329,7 +329,16 @@
       entries.forEach(function (en) {
         if (en.isIntersecting) {
           subLinks.forEach(function (a) { a.classList.remove("is-active"); });
-          var l = linkFor[en.target.id]; if (l) l.classList.add("is-active");
+          var l = linkFor[en.target.id];
+          if (l) {
+            l.classList.add("is-active");
+            // on mobile the row scrolls sideways — keep the current section in view
+            var row = l.parentElement;
+            if (row.scrollWidth > row.clientWidth + 4) {
+              if (l.offsetLeft < row.scrollLeft) row.scrollTo({ left: Math.max(0, l.offsetLeft - 12), behavior: "smooth" });
+              else if (l.offsetLeft + l.offsetWidth > row.scrollLeft + row.clientWidth) row.scrollTo({ left: l.offsetLeft + l.offsetWidth - row.clientWidth + 12, behavior: "smooth" });
+            }
+          }
         }
       });
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });

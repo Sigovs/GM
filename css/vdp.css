@@ -37,6 +37,12 @@
 .vdp__thumb { flex: 0 0 calc((100% - 4 * .55rem) / 5); aspect-ratio: 16 / 11; border-radius: var(--r); overflow: hidden; border: 2px solid transparent; cursor: pointer; padding: 0; background: var(--surface-2); transition: border-color .2s; }
 .vdp__thumb img { width: 100%; height: 100%; object-fit: cover; }
 .vdp__thumb.is-active { border-color: var(--accent); }
+/* On a phone, 5-across plus two 34px arrows leaves 44px thumbnails — unusable.
+   Drop the arrows (the strip is a native swipe) and show ~3 with a peek. */
+@media (max-width: 700px) {
+  .vdp__thumbs-arrow { display: none !important; }
+  .vdp__thumb { flex: 0 0 calc((100% - 2 * .55rem) / 3.2); }
+}
 
 /* left-column overview (fills the space beside the sticky panel) */
 .vdp__overview { margin-top: clamp(1.6rem, 3vw, 2.2rem); }
@@ -96,7 +102,20 @@
 .vdp-subnav__cta { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
 .vdp-subnav__price { font-family: var(--display); font-weight: 700; font-size: 1.05rem; color: var(--ink); font-variant-numeric: tabular-nums; }
 @media (max-width: 1240px) { .vdp-subnav__title { display: none; } }
-@media (max-width: 920px) { .vdp-subnav__links { display: none; } }
+/* Mobile: the section row IS the bar — scroll it sideways rather than hiding
+   it (hiding left the phone with a sticky bar holding a single button and no
+   way to jump between sections). CTA stays pinned on the right. */
+@media (max-width: 920px) {
+  .vdp-subnav__inner { gap: .6rem; }
+  .vdp-subnav__links {
+    flex: 1 1 auto; min-width: 0;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .vdp-subnav__links::-webkit-scrollbar { display: none; }
+  .vdp-subnav__links .btn { flex: 0 0 auto; }
+  .vdp-subnav__cta { flex: 0 0 auto; }
+}
 @media (max-width: 560px) { .vdp-subnav__price { display: none; } }
 
 /* scroll reveal (self-contained, gated on .js) */
