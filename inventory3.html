@@ -87,6 +87,33 @@
                 <i class="bi bi-search"></i>
                 <input type="search" class="kwbar__input" data-search placeholder="Search inventory — make, model, trim or keyword…" aria-label="Search by keyword" />
               </div>
+
+              <!-- van type quick-pick: the first call a van buyer makes -->
+              <div class="bodypick" role="group" aria-label="Van type" data-bodypick>
+                <button type="button" class="bodypick__btn" data-body-cat="passenger" aria-pressed="false">
+                  <svg class="bodypick__van" viewBox="0 0 48 26" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M4 5h29c.9 0 1.7.3 2.4.9L44 12.6V17c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2z M13 15.8a4.2 4.2 0 1 1 0 8.4 4.2 4.2 0 0 1 0-8.4z M36 15.8a4.2 4.2 0 1 1 0 8.4 4.2 4.2 0 0 1 0-8.4z"/>
+                    <path fill="var(--van-bg)" d="M6.5 7.8h6v3.8h-6z M14.5 7.8h6v3.8h-6z M22.5 7.8h6v3.8h-6z M33.5 7.8h1.4l3.6 3.2h-5z M13 18.3a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z M36 18.3a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z"/>
+                  </svg>
+                  <span class="bodypick__txt">
+                    <span class="bodypick__label">Passenger</span>
+                    <span class="bodypick__sub">Seats &amp; conversions</span>
+                  </span>
+                  <span class="bodypick__count" data-cat-count>—</span>
+                </button>
+
+                <button type="button" class="bodypick__btn" data-body-cat="cargo" aria-pressed="false">
+                  <svg class="bodypick__van" viewBox="0 0 48 26" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M4 5h29c.9 0 1.7.3 2.4.9L44 12.6V17c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2z M13 15.8a4.2 4.2 0 1 1 0 8.4 4.2 4.2 0 0 1 0-8.4z M36 15.8a4.2 4.2 0 1 1 0 8.4 4.2 4.2 0 0 1 0-8.4z"/>
+                    <path fill="var(--van-bg)" d="M33.5 7.8h1.4l3.6 3.2h-5z M13 18.3a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z M36 18.3a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4z"/>
+                  </svg>
+                  <span class="bodypick__txt">
+                    <span class="bodypick__label">Cargo</span>
+                    <span class="bodypick__sub">Panel &amp; high roof</span>
+                  </span>
+                  <span class="bodypick__count" data-cat-count>—</span>
+                </button>
+              </div>
             </div>
 
             <!-- filter bar (Year · Make · Model · Price · Mileage) -->

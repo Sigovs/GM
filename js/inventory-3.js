@@ -52,12 +52,19 @@
   var MPG_OPTS = [18, 20, 22, 25];
 
   /* ---------- state ---------- */
-  var state = { q: "", make: [], model: [], body: [], drivetrain: [], extColor: [], intColor: [], fuel: [], intType: [], mpgHwy: null, priceMin: null, priceMax: null, yearMin: null, yearMax: null, mileageMin: null, mileageMax: null, sort: "featured" };
+  // bodyCats is a list: Passenger and Cargo are independent toggles, so both can be on at once.
+  var state = { q: "", bodyCats: [], make: [], model: [], body: [], drivetrain: [], extColor: [], intColor: [], fuel: [], intType: [], mpgHwy: null, priceMin: null, priceMax: null, yearMin: null, yearMax: null, mileageMin: null, mileageMax: null, sort: "featured" };
+
+  /* Two van families the buyer actually chooses between. Everything that
+     isn't a cargo body (Passenger Van, Crew Van, Luxury Conversion) carries
+     people, so it lands on the passenger side. */
+  function bodyCatOf(v) { return /cargo/i.test(v.body || "") ? "cargo" : "passenger"; }
 
   /* ---------- URL sync ---------- */
   function readURL() {
     var p = new URLSearchParams(location.search);
     state.q = p.get("q") || "";
+    state.bodyCats = (p.get("type") ? p.get("type").split(",") : []).filter(function (t) { return t === "passenger" || t === "cargo"; });
     state.make = p.get("make") ? p.get("make").split(",") : [];
     state.model = p.get("model") ? p.get("model").split(",") : [];
     state.body = p.get("body") ? p.get("body").split(",") : [];
@@ -73,6 +80,7 @@
   function writeURL() {
     var p = new URLSearchParams();
     if (state.q) p.set("q", state.q);
+    if (state.bodyCats.length) p.set("type", state.bodyCats.join(","));
     if (state.make.length) p.set("make", state.make.join(","));
     if (state.model.length) p.set("model", state.model.join(","));
     if (state.body.length) p.set("body", state.body.join(","));
@@ -115,9 +123,12 @@
       var ok = state.q.toLowerCase().split(/\s+/).every(function (w) { return !w || hay.indexOf(w) !== -1; });
       if (!ok) return false;
     }
+    if (state.bodyCats.length && state.bodyCats.indexOf(bodyCatOf(v)) === -1) return false;
     if (state.make.length && state.make.indexOf(v.make) === -1) return false;
     if (state.model.length && state.model.indexOf(v.model) === -1) return false;
-    if (state.body.length && state.body.indexOf(v.body) === -1) return false;
+    // NOTE: no strict state.body check here — the body chips hold loose labels
+    // ("Van", "SUV", "Other"), which never equal a full body string like
+    // "Cargo Van". The substring/Other match further down is the real one.
     if (state.drivetrain.length && state.drivetrain.indexOf(v.drivetrain) === -1) return false;
     if (state.priceMin && v.price < state.priceMin) return false;
     if (state.priceMax && v.price > state.priceMax) return false;
@@ -187,6 +198,7 @@
   function renderChips() {
     var host = $("[data-chips]");
     var chips = [];
+    state.bodyCats.forEach(function (c) { chips.push(chip(c === "cargo" ? "Cargo van" : "Passenger van", "bodyCats", c)); });
     state.make.forEach(function (m) { chips.push(chip(m, "make", m)); });
     state.model.forEach(function (m) { chips.push(chip(m, "model", m)); });
     state.body.forEach(function (b) { chips.push(chip(b, "body", b)); });
@@ -218,7 +230,7 @@
 
   /* ---------- render ---------- */
   function hasFilters() {
-    return !!(state.q || state.make.length || state.model.length || state.body.length || state.drivetrain.length ||
+    return !!(state.q || state.bodyCats.length || state.make.length || state.model.length || state.body.length || state.drivetrain.length ||
       state.extColor.length || state.intColor.length || state.fuel.length || state.intType.length || state.mpgHwy ||
       state.priceMin || state.priceMax || state.yearMin || state.yearMax || state.mileageMin || state.mileageMax);
   }
@@ -231,6 +243,7 @@
     $("[data-empty]").classList.toggle("is-shown", list.length === 0);
     grid.style.display = list.length ? "" : "none";
     renderChips();
+    syncBodyPick();
     $("[data-clear]").disabled = !hasFilters();
     var cnt = $("[data-adv-count]"); if (cnt) { var n = advCount(); cnt.textContent = n ? n : ""; cnt.classList.toggle("is-shown", !!n); }
     writeURL();
@@ -391,6 +404,38 @@
     var cnt = $("[data-adv-count]"); if (cnt) { var n = advCount(); cnt.textContent = n ? n : ""; cnt.classList.toggle("is-shown", !!n); }
   }
 
+  /* ---------- van type quick-pick (Passenger / Cargo) ---------- */
+  // Counts are faceted: every other active filter applies, but not the
+  // category itself — so each tile shows what you'd get by picking it.
+  function catCounts() {
+    var saved = state.bodyCats;
+    state.bodyCats = [];
+    var pool = DATA.filter(matches);
+    state.bodyCats = saved;
+    var out = { passenger: 0, cargo: 0 };
+    pool.forEach(function (v) { out[bodyCatOf(v)]++; });
+    return out;
+  }
+  function syncBodyPick() {
+    var host = $("[data-bodypick]"); if (!host) return;
+    var counts = catCounts();
+    $$("[data-body-cat]", host).forEach(function (b) {
+      var cat = b.getAttribute("data-body-cat");
+      var on = state.bodyCats.indexOf(cat) !== -1;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      var c = $("[data-cat-count]", b); if (c) c.textContent = counts[cat];
+      b.disabled = !on && counts[cat] === 0;   // never trap the user on an empty tile
+    });
+  }
+  var bodypickHost = $("[data-bodypick]");
+  if (bodypickHost) bodypickHost.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-body-cat]"); if (!b || b.disabled) return;
+    // independent toggles — Passenger and Cargo can both be on
+    onFacetChange("bodyCats", b.getAttribute("data-body-cat"), state.bodyCats.indexOf(b.getAttribute("data-body-cat")) === -1);
+    apply();
+  });
+
   /* ---------- events: filters ---------- */
   function onFacetChange(facet, val, on) {
     var arr = state[facet];
@@ -414,7 +459,7 @@
 
   // clear
   function clearAll() {
-    state = { q: "", make: [], model: [], body: [], drivetrain: [], extColor: [], intColor: [], fuel: [], intType: [], mpgHwy: null, priceMin: null, priceMax: null, yearMin: null, yearMax: null, mileageMin: null, mileageMax: null, sort: state.sort };
+    state = { q: "", bodyCats: [], make: [], model: [], body: [], drivetrain: [], extColor: [], intColor: [], fuel: [], intType: [], mpgHwy: null, priceMin: null, priceMax: null, yearMin: null, yearMax: null, mileageMin: null, mileageMax: null, sort: state.sort };
     searchEl.value = "";
     renderFilters(); apply(); syncTopSearch();
   }
@@ -425,7 +470,7 @@
   $("[data-chips]").addEventListener("click", function (e) {
     var b = e.target.closest("[data-remove-facet]"); if (!b) return;
     var facet = b.getAttribute("data-remove-facet"), val = b.getAttribute("data-remove-val");
-    if (facet === "make" || facet === "model" || facet === "body" || facet === "drivetrain" ||
+    if (facet === "make" || facet === "model" || facet === "body" || facet === "drivetrain" || facet === "bodyCats" ||
         facet === "extColor" || facet === "intColor" || facet === "fuel" || facet === "intType") onFacetChange(facet, val, false);
     else if (facet === "q") { state.q = ""; searchEl.value = ""; }
     else if (facet === "yearR") { state.yearMin = null; state.yearMax = null; }

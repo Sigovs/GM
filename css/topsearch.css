@@ -247,3 +247,44 @@
   .srp-hero { min-height: 260px; }
   .srp-searchcard { margin-top: -2rem; border-radius: var(--r-lg); }
 }
+
+/* ---- van type quick-pick (Passenger / Cargo) ----
+   The van silhouette is one currentColor path; the glass + wheel hubs are
+   painted in --van-bg, which tracks the tile's own background — so the
+   cutouts read correctly on both the white and the selected (accent) tile. */
+.bodypick { display: flex; gap: .6rem; margin-top: .85rem; }
+.bodypick__btn {
+  --van-bg: var(--surface);
+  flex: 1 1 0; min-width: 0;
+  display: flex; align-items: center; gap: .8rem;
+  padding: .7rem .9rem;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--surface); color: var(--ink);
+  font-family: inherit; text-align: left; cursor: pointer;
+  transition: border-color .2s, background-color .2s, color .2s,
+              box-shadow .3s var(--ease), transform .18s var(--ease);
+}
+.bodypick__btn:hover { border-color: var(--accent); box-shadow: 0 10px 24px -16px rgba(10,108,224,.65); transform: translateY(-1px); }
+.bodypick__btn:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.bodypick__btn.is-on {
+  --van-bg: var(--accent);
+  background: var(--accent); border-color: var(--accent); color: #fff;
+}
+.bodypick__btn:disabled { opacity: .42; cursor: default; transform: none; box-shadow: none; border-color: var(--line); }
+
+.bodypick__van { flex: 0 0 auto; width: 46px; height: 25px; }
+.bodypick__txt { display: flex; flex-direction: column; min-width: 0; }
+.bodypick__label { font-weight: 700; font-size: .93rem; letter-spacing: -.01em; line-height: 1.25; }
+.bodypick__sub { font-size: .73rem; color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bodypick__btn.is-on .bodypick__sub { color: rgba(255,255,255,.78); }
+.bodypick__count {
+  margin-left: auto; flex: 0 0 auto;
+  min-width: 26px; height: 22px; padding: 0 .45rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--r-pill);
+  background: var(--surface-2); color: var(--ink-soft);
+  font-size: .75rem; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.bodypick__btn.is-on .bodypick__count { background: rgba(255,255,255,.24); color: #fff; }
+
+@media (max-width: 620px) { .bodypick { flex-direction: column; } }
