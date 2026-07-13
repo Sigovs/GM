@@ -61,9 +61,17 @@
     </div>
   </div>
 
-  <main class="srp-main">
-    <!-- accessible page heading (visual header removed per client — filters lead) -->
-    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Inventory — GM Motors NY</h1>
+  <main class="srp-main srp-main--hero">
+
+    <!-- ---------- hero band: photography opens the page, filters float on top ---------- -->
+    <section class="srp-hero">
+      <img class="srp-hero__img" src="assets/img/vans/break-road.jpg" alt="" aria-hidden="true" />
+      <div class="srp-hero__inner">
+        <p class="srp-hero__eyebrow">Inventory</p>
+        <h1 class="srp-hero__title">Vans that earn their keep.</h1>
+        <p class="srp-hero__sub"><strong data-result-count>—</strong> vans available · inspected, financed &amp; delivered nationwide</p>
+      </div>
+    </section>
 
     <!-- ---------- listing ---------- -->
     <div class="container">
@@ -72,17 +80,21 @@
         <!-- results (full width — no side menu) -->
         <section class="srp__results" aria-label="Vehicles">
 
-          <!-- ---------- keyword search bar ---------- -->
-          <div class="kwbar">
-            <i class="bi bi-search"></i>
-            <input type="search" class="kwbar__input" data-search placeholder="Search inventory — make, model, trim or keyword…" aria-label="Search by keyword" />
-          </div>
+          <!-- search + filters, lifted up onto the hero band -->
+          <div class="srp-searchcard">
+            <div class="srp-searchcard__kw">
+              <div class="kwbar">
+                <i class="bi bi-search"></i>
+                <input type="search" class="kwbar__input" data-search placeholder="Search inventory — make, model, trim or keyword…" aria-label="Search by keyword" />
+              </div>
+            </div>
 
-          <!-- ---------- filter bar (Year · Make · Model · Price · Mileage) ---------- -->
-          <div class="filterbar" data-filterbar>
-            <div class="filterbar__row" data-ts-fields><!-- fields injected by JS --></div>
-            <div class="filterbar__adv" data-adv-panel>
-              <div class="filterbar__adv-inner" data-adv-fields><!-- advanced filters injected by JS --></div>
+            <!-- filter bar (Year · Make · Model · Price · Mileage) -->
+            <div class="filterbar" data-filterbar>
+              <div class="filterbar__row" data-ts-fields><!-- fields injected by JS --></div>
+              <div class="filterbar__adv" data-adv-panel>
+                <div class="filterbar__adv-inner" data-adv-fields><!-- advanced filters injected by JS --></div>
+              </div>
             </div>
           </div>
 

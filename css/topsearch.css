@@ -172,3 +172,78 @@
 
 /* ---- centered page header ("Now available" / "Inventory") ---- */
 .srp-head__inner { justify-content: center; text-align: center; }
+
+/* ============================================================
+   SRP HERO BAND  (inventory3 only — .srp-main--hero)
+   The client read the filters-on-flat-grey opening as "generic".
+   Answer it with photography, not a background image behind the
+   grid: a cinematic band up top, with the search + filters lifted
+   onto it. Filters still lead — they sit on top of everything.
+   ============================================================ */
+.srp-main--hero {
+  background: radial-gradient(120% 55% at 50% 0%, rgba(10,108,224,.06) 0%, rgba(10,108,224,0) 60%), var(--bg);
+}
+
+.srp-hero {
+  position: relative; overflow: hidden;
+  min-height: clamp(300px, 30vw, 420px);
+  display: flex; align-items: flex-end;
+  background: var(--dark);
+}
+.srp-hero__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 62%;
+}
+/* scrim: keeps the type readable and lets the card lift off a dark base */
+.srp-hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(9,13,17,.50) 0%, rgba(9,13,17,.22) 38%, rgba(9,13,17,.88) 100%);
+}
+.srp-hero__inner {
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--container); margin-inline: auto;
+  padding: 0 var(--gutter) clamp(4.5rem, 6vw, 6rem);
+  color: #fff;
+}
+.srp-hero__eyebrow {
+  font-family: var(--display); font-size: .76rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent-light); margin-bottom: .55rem;
+}
+.srp-hero__title {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 3.1rem);
+  letter-spacing: -.025em; line-height: 1.05; color: #fff;
+}
+.srp-hero__sub {
+  margin-top: .7rem; font-size: clamp(.9rem, 1.3vw, 1.02rem);
+  color: rgba(255,255,255,.76);
+}
+.srp-hero__sub strong { color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---- search + filters as one floating card, overlapping the band ---- */
+.srp-main--hero .srp { padding-top: 0; }
+.srp-searchcard {
+  position: relative; z-index: 3;
+  max-width: var(--container); margin-inline: auto;
+  margin-top: clamp(-4.5rem, -4.5vw, -2.75rem);
+  margin-bottom: clamp(1.6rem, 3vw, 2.2rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: 0 28px 64px -30px rgba(9,13,17,.5);
+  overflow: hidden;
+}
+.srp-searchcard__kw { padding: 1.1rem 1.2rem 0; }
+/* the card supplies the surface — strip the bars' own chrome so it isn't a box-in-a-box */
+.srp-searchcard .kwbar { max-width: none; margin: 0; }
+.srp-searchcard .filterbar {
+  max-width: none; margin: 0;
+  background: transparent; border: 0; box-shadow: none; border-radius: 0;
+}
+
+@media (max-width: 700px) {
+  .srp-hero { min-height: 260px; }
+  .srp-searchcard { margin-top: -2rem; border-radius: var(--r-lg); }
+}

@@ -225,7 +225,8 @@
   function apply() {
     var list = sortList(DATA.filter(matches));
     grid.innerHTML = list.map(card).join("");
-    $("[data-result-count]").textContent = list.length;
+    // hero band and toolbar both show the count — keep them in sync
+    $$("[data-result-count]").forEach(function (el) { el.textContent = list.length; });
     var fc = $("[data-found-count]"); if (fc) fc.textContent = list.length;
     $("[data-empty]").classList.toggle("is-shown", list.length === 0);
     grid.style.display = list.length ? "" : "none";
